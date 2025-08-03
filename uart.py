@@ -1,7 +1,7 @@
 import serial
 
 # Initialize serial connection
-ser = serial.Serial("/dev/AMA0", baudrate=115200)
+ser = serial.Serial("/dev/serial0", baudrate=115200)
 
 print("UART test started, type something for I/O or simply listen for device")
 
