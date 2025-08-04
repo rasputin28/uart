@@ -63,14 +63,17 @@ for baud in baud_list:
                 data = ser.read(ser.in_waiting or 1)
                 if data:
                     raw = repr(data)
-                    decoded = data.decode(errors="replace")
-                    hex_data = [hex(b) for b in data]
+                    decoded_utf8 = data.decode(errors="replace")
+                    decoded_latin1 = data.decode('latin-1')
+                    hex_output = [hex(b) for b in data]
                     log.write(f"[{baud}] RAW: {raw}\n")
-                    log.write(f"[{baud}] DEC: {decoded}\n")
-                    log.write(f"[{baud}] HEX: {hex_data}\n")
+                    log.write(f"[{baud}] DEC UTF-8 (with replacement): {decoded_utf8}\n")
+                    log.write(f"[{baud}] DEC Latin-1: {decoded_latin1}\n")
+                    log.write(f"[{baud}] HEX: {hex_output}\n")
                     print(f"[{baud}] RAW: {raw}")
-                    print(f"[{baud}] DEC: {decoded}")
-                    print(f"[{baud}] HEX: {hex_data}")
+                    print(f"[{baud}] HEX: {hex_output}")
+                    print(f"[{baud}] DEC UTF-8 (with replacement): {decoded_utf8}")
+                    print(f"[{baud}] DEC Latin-1: {decoded_latin1}")
     except Exception as e:
         print(f"[{baud}] Error: {e}")
 
