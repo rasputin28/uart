@@ -63,17 +63,23 @@ for baud in baud_list:
                 data = ser.read(ser.in_waiting or 1)
                 if data:
                     raw = repr(data)
+                    decimal_output = [str(b) for b in data]
                     decoded_utf8 = data.decode(errors="replace")
-                    decoded_latin1 = data.decode('latin-1')
+                    decoded_gbk = data.decode('gbk', errors="replace")
+                    decoded_gb2312 = data.decode('gb2312', errors="replace")
                     hex_output = [hex(b) for b in data]
                     log.write(f"[{baud}] RAW: {raw}\n")
-                    log.write(f"[{baud}] DEC UTF-8 (with replacement): {decoded_utf8}\n")
-                    log.write(f"[{baud}] DEC Latin-1: {decoded_latin1}\n")
+                    log.write(f"[{baud}] DEC: {decimal_output}\n")
+                    log.write(f"[{baud}] DEC UTF-8: {decoded_utf8}\n")
+                    log.write(f"[{baud}] DEC GBK: {decoded_gbk}\n")
+                    log.write(f"[{baud}] DEC GB2312: {decoded_gb2312}\n")
                     log.write(f"[{baud}] HEX: {hex_output}\n")
                     print(f"[{baud}] RAW: {raw}")
+                    print(f"[{baud}] DEC: {decimal_output}")
+                    print(f"[{baud}] DEC UTF-8: {decoded_utf8}")
+                    print(f"[{baud}] DEC GBK: {decoded_gbk}")
+                    print(f"[{baud}] DEC GB2312: {decoded_gb2312}")
                     print(f"[{baud}] HEX: {hex_output}")
-                    print(f"[{baud}] DEC UTF-8 (with replacement): {decoded_utf8}")
-                    print(f"[{baud}] DEC Latin-1: {decoded_latin1}")
     except Exception as e:
         print(f"[{baud}] Error: {e}")
 
