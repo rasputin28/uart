@@ -1,51 +1,69 @@
 import serial
 import time
 
-BAUD_OPTIONS = [9600, 19200, 38400, 57600, 115200, 230400, 460800, 921600]
+# Default common UART baud rates
+baud_rates = [
+    110,
+    300,
+    600,
+    1200,
+    2400,
+    4800,
+    9600,
+    14400,
+    19200,
+    28800,
+    38400,
+    57600,
+    115200,
+    128000,
+    256000,
+    460800,
+    921600,
+    1000000,
+    1152000,
+    1500000,
+    2000000,
+    2500000,
+    3000000,
+    3500000,
+    4000000,
+]
 
-def choose_baud_rate():
-    print("Select a baud rate:")
-    for i, baud in enumerate(BAUD_OPTIONS):
-        print(f"{i + 1}: {baud}")
-    while True:
-        choice = input(f"Enter number (1-{len(BAUD_OPTIONS)}): ")
-        if choice.isdigit() and 1 <= int(choice) <= len(BAUD_OPTIONS):
-            return BAUD_OPTIONS[int(choice) - 1]
-        else:
-            print("Invalid choice. Try again.")
+# Prompt user for mode
+mode = input("Select mode: [a]uto baud detect or [m]anual selection? ").strip().lower()
 
-def main():
-    baud = choose_baud_rate()
-    print(f"\nOpening /dev/ttyAMA0 at {baud} baud...")
-
+if mode == 'm':
+    print("Available baud rates:")
+    for i, br in enumerate(baud_rates):
+        print(f"{i + 1}: {br}")
     try:
-        ser = serial.Serial("/dev/ttyAMA0", baudrate=baud, timeout=0.1)
+        index = int(input("Select baud rate number: ")) - 1
+        baud = baud_rates[index]
+    except:
+        print("Invalid selection.")
+        exit(1)
+    baud_list = [baud]
+else:
+    print("Running auto baud rate scan (5s each)...")
+    baud_list = baud_rates
 
-        print("=== UART Monitor Started ===")
-        print("Press Ctrl+C to exit.\n")
-
-        with open("uart_raw_log.txt", "ab") as logfile:
-            while True:
+# Try each baud rate
+for baud in baud_list:
+    print(f"\nTrying baud rate: {baud}")
+    try:
+        with serial.Serial("/dev/ttyAMA0", baudrate=baud, timeout=1) as ser, open("log.txt", "a") as log:
+            start = time.time()
+            while time.time() - start < 5:
                 data = ser.read(ser.in_waiting or 1)
                 if data:
-                    timestamp = time.strftime("[%H:%M:%S] ").encode()
-                    logline = timestamp + data
-                    try:
-                        # Display on terminal
-                        print(data.decode('utf-8', errors='replace'), end='', flush=True)
-                    except:
-                        print("[!] Error decoding data")
-                    # Log raw data with timestamp
-                    logfile.write(logline)
-                    logfile.flush()
-
-    except KeyboardInterrupt:
-        print("\nExiting...")
+                    raw = repr(data)
+                    decoded = data.decode(errors="replace")
+                    log.write(f"[{baud}] RAW: {raw}\n")
+                    log.write(f"[{baud}] DEC: {decoded}\n")
+                    print(f"[{baud}] RAW: {raw}")
+                    print(f"[{baud}] DEC: {decoded}")
     except Exception as e:
-        print("Error:", e)
-    finally:
-        if 'ser' in locals() and ser.is_open:
-            ser.close()
+        print(f"[{baud}] Error: {e}")
 
-if __name__ == "__main__":
-    main()
+print("\nDone. Check log.txt for full output.")
