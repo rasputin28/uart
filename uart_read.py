@@ -155,11 +155,19 @@ for baud in baud_list:
                     advanced_results = try_advanced_decoding(data)
                     decoded_results.update(advanced_results)
                     
+                    # Separate control analysis for better visibility
+                    control_info = ""
+                    if "control_analysis" in advanced_results:
+                        control_info = advanced_results["control_analysis"]
+                        del advanced_results["control_analysis"]  # Remove from regular results
+                    
                     # Log and print all results
                     log.write(f"[{baud}] RAW: {raw}\n")
                     log.write(f"[{baud}] DEC: {decimal_output}\n")
                     log.write(f"[{baud}] HEX: {hex_output}\n")
                     log.write(f"[{baud}] HEX Only: {' '.join(hex(b) for b in data)}\n")
+                    if control_info:
+                        log.write(f"[{baud}] CONTROL: {control_info}\n")
                     for enc, result in decoded_results.items():
                         log.write(f"[{baud}] DEC ({enc}): {result}\n")
                     
@@ -167,6 +175,8 @@ for baud in baud_list:
                     print(f"[{baud}] DEC: {decimal_output}")
                     print(f"[{baud}] HEX: {hex_output}")
                     print(f"[{baud}] HEX Only: {' '.join(hex(b) for b in data)}")
+                    if control_info:
+                        print(f"[{baud}] CONTROL: {control_info}")
                     for enc, result in decoded_results.items():
                         print(f"[{baud}] DEC ({enc}): {result}")
     except Exception as e:
