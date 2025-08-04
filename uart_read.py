@@ -11,8 +11,12 @@ baud_rates = [
     4800,
     9600,
     10400,
+    10450,
     10500,
+    10550,
     10600,
+    10638,
+    10650,
     10700,
     10800,
     14400,
@@ -71,14 +75,20 @@ for baud in baud_list:
                     decimal_output = [str(b) for b in data]
                     hex_output = [hex(b) for b in data]
                     
-                    # Try multiple encodings for Chinese text
+                    # Try multiple encodings for Chinese text with error handling
                     encodings = ['utf-8', 'gb18030', 'gbk', 'big5', 'gb2312']
                     decoded_results = {}
                     
+                    def score_chinese(decoded):
+                        """Score how many Chinese characters are in the decoded text"""
+                        return sum(1 for ch in decoded if '\u4e00' <= ch <= '\u9fff')
+                    
                     for enc in encodings:
                         try:
-                            decoded = data.decode(enc)
-                            decoded_results[enc] = decoded
+                            # Use errors='replace' to avoid crashes and see partial results
+                            decoded = data.decode(enc, errors='replace')
+                            score = score_chinese(decoded)
+                            decoded_results[enc] = f"{decoded} [score: {score}]"
                         except Exception as e:
                             decoded_results[enc] = f"[decode failed: {e}]"
                     
@@ -86,12 +96,14 @@ for baud in baud_list:
                     log.write(f"[{baud}] RAW: {raw}\n")
                     log.write(f"[{baud}] DEC: {decimal_output}\n")
                     log.write(f"[{baud}] HEX: {hex_output}\n")
+                    log.write(f"[{baud}] HEX Only: {' '.join(hex(b) for b in data)}\n")
                     for enc, result in decoded_results.items():
                         log.write(f"[{baud}] DEC ({enc}): {result}\n")
                     
                     print(f"[{baud}] RAW: {raw}")
                     print(f"[{baud}] DEC: {decimal_output}")
                     print(f"[{baud}] HEX: {hex_output}")
+                    print(f"[{baud}] HEX Only: {' '.join(hex(b) for b in data)}")
                     for enc, result in decoded_results.items():
                         print(f"[{baud}] DEC ({enc}): {result}")
     except Exception as e:
