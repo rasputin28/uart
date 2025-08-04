@@ -23,6 +23,9 @@ baud_rates = [
     15000,
     16000,
     16200,
+    16250,
+    16300,
+    16350,
     16400,
     16600,
     16800,
@@ -93,12 +96,23 @@ for baud in baud_list:
                         """Score how many Chinese characters are in the decoded text"""
                         return sum(1 for ch in decoded if '\u4e00' <= ch <= '\u9fff')
                     
+                    def calculate_decode_percentage(decoded, original_length):
+                        """Calculate percentage of successfully decoded characters"""
+                        if original_length == 0:
+                            return 0.0
+                        # Count replacement characters () which indicate decode failures
+                        replacement_chars = decoded.count('')
+                        successful_chars = original_length - replacement_chars
+                        percentage = (successful_chars / original_length) * 100
+                        return round(percentage, 1)
+                    
                     for enc in encodings:
                         try:
                             # Use errors='replace' to avoid crashes and see partial results
                             decoded = data.decode(enc, errors='replace')
                             score = score_chinese(decoded)
-                            decoded_results[enc] = f"{decoded} [score: {score}]"
+                            percentage = calculate_decode_percentage(decoded, len(data))
+                            decoded_results[enc] = f"{decoded} [score: {score}, decode: {percentage}%]"
                         except Exception as e:
                             decoded_results[enc] = f"[decode failed: {e}]"
                     
