@@ -126,8 +126,12 @@ for baud in baud_list:
                             first_byte = data_bytes[0]
                             # Expanded list of control bytes and common patterns
                             control_bytes = [0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08, 0x09, 0x0a, 0x0d, 0x0e, 0x0f, 0x1b, 0x1c, 0x1d, 0x1e, 0x1f]
+                            protocol_markers = [0xBE, 0xFE, 0xFF, 0xAA, 0x55, 0x7E, 0x7F]  # Common protocol markers
+                            
                             if first_byte in control_bytes:
                                 results["control_analysis"] = f"Starts with control byte 0x{first_byte:02x}"
+                            elif first_byte in protocol_markers:
+                                results["control_analysis"] = f"Starts with protocol marker 0x{first_byte:02x}"
                             else:
                                 # Always show first byte analysis for debugging
                                 results["control_analysis"] = f"First byte: 0x{first_byte:02x} (not a control byte)"
@@ -141,6 +145,18 @@ for baud in baud_list:
                                     score_skip = score_chinese(decoded_skip)
                                     if score_skip > 0:
                                         results[f"{enc}_skip1"] = f"{decoded_skip} [score: {score_skip}]"
+                                except:
+                                    pass
+                        
+                        # Strategy 4: Try skipping protocol markers (0xBE, 0xFE, etc.)
+                        if len(data_bytes) > 1 and first_byte in [0xBE, 0xFE, 0xFF]:
+                            for enc in ['utf-8', 'gbk', 'gb18030']:
+                                try:
+                                    # Skip protocol marker and try decoding
+                                    decoded_skip_marker = data_bytes[1:].decode(enc, errors='replace')
+                                    score_skip_marker = score_chinese(decoded_skip_marker)
+                                    if score_skip_marker > 0:
+                                        results[f"{enc}_skip_marker"] = f"{decoded_skip_marker} [score: {score_skip_marker}]"
                                 except:
                                     pass
                         
