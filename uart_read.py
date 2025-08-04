@@ -64,10 +64,13 @@ for baud in baud_list:
                 if data:
                     raw = repr(data)
                     decoded = data.decode(errors="replace")
+                    hex_data = [hex(b) for b in data]
                     log.write(f"[{baud}] RAW: {raw}\n")
                     log.write(f"[{baud}] DEC: {decoded}\n")
+                    log.write(f"[{baud}] HEX: {hex_data}\n")
                     print(f"[{baud}] RAW: {raw}")
                     print(f"[{baud}] DEC: {decoded}")
+                    print(f"[{baud}] HEX: {hex_data}")
     except Exception as e:
         print(f"[{baud}] Error: {e}")
 
