@@ -31,22 +31,22 @@ baud_rates = [
 ]
 
 # Prompt user for mode
-mode = input("Select mode: [a]uto baud detect or [m]anual selection? ").strip().lower()
+# mode = input("Select mode: [a]uto baud detect or [m]anual selection? ").strip().lower()
 
-if mode == 'm':
-    print("Available baud rates:")
-    for i, br in enumerate(baud_rates):
-        print(f"{i + 1}: {br}")
-    try:
-        index = int(input("Select baud rate number: ")) - 1
-        baud = baud_rates[index]
-    except:
-        print("Invalid selection.")
-        exit(1)
-    baud_list = [baud]
-else:
-    print("Running auto baud rate scan (10s each)...")
-    baud_list = baud_rates
+# if mode == 'm':
+print("Available baud rates:")
+for i, br in enumerate(baud_rates):
+    print(f"{i + 1}: {br}")
+try:
+    index = int(input("Select baud rate number: ")) - 1
+    baud = baud_rates[index]
+except:
+    print("Invalid selection.")
+    exit(1)
+baud_list = [baud]
+# else:
+#     print("Running auto baud rate scan (10s each)...")
+#     baud_list = baud_rates
 
 # Try each baud rate
 for baud in baud_list:
