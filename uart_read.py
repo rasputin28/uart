@@ -59,7 +59,7 @@ for baud in baud_list:
     try:
         with serial.Serial("/dev/ttyAMA0", baudrate=baud, timeout=1) as ser, open("log.txt", "a") as log:
             start = time.time()
-            while time.time() - start < 10:
+            while time.time() - start < 25:
                 data = ser.read(ser.in_waiting or 1)
                 if data:
                     raw = repr(data)
