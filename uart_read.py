@@ -8,27 +8,35 @@ def choose_baud_rate():
     for i, baud in enumerate(BAUD_OPTIONS):
         print(f"{i + 1}: {baud}")
     while True:
-        choice = input("Enter number (1-{}): ".format(len(BAUD_OPTIONS)))
+        choice = input(f"Enter number (1-{len(BAUD_OPTIONS)}): ")
         if choice.isdigit() and 1 <= int(choice) <= len(BAUD_OPTIONS):
             return BAUD_OPTIONS[int(choice) - 1]
         else:
-            print("Invalid input, try again.")
+            print("Invalid choice. Try again.")
 
 def main():
-    baud_rate = choose_baud_rate()
-    print(f"Opening /dev/ttyAMA0 at {baud_rate} baud...")
+    baud = choose_baud_rate()
+    print(f"\nOpening /dev/ttyAMA0 at {baud} baud...")
 
     try:
-        ser = serial.Serial("/dev/ttyAMA0", baudrate=baud_rate, timeout=0.5)
-        print("Listening for UART data. Press Ctrl+C to exit.\n")
+        ser = serial.Serial("/dev/ttyAMA0", baudrate=baud, timeout=0.1)
 
-        with open("uart_log.txt", "w") as logfile:
+        print("=== UART Monitor Started ===")
+        print("Press Ctrl+C to exit.\n")
+
+        with open("uart_raw_log.txt", "ab") as logfile:
             while True:
                 data = ser.read(ser.in_waiting or 1)
                 if data:
-                    decoded = data.decode(errors='ignore')
-                    print(decoded, end="", flush=True)
-                    logfile.write(decoded)
+                    timestamp = time.strftime("[%H:%M:%S] ").encode()
+                    logline = timestamp + data
+                    try:
+                        # Display on terminal
+                        print(data.decode('utf-8', errors='replace'), end='', flush=True)
+                    except:
+                        print("[!] Error decoding data")
+                    # Log raw data with timestamp
+                    logfile.write(logline)
                     logfile.flush()
 
     except KeyboardInterrupt:
