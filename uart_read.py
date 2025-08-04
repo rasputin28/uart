@@ -89,7 +89,7 @@ for baud in baud_list:
                     hex_output = [hex(b) for b in data]
                     
                     # Try multiple encodings for Chinese text with error handling
-                    encodings = ['utf-8', 'gb18030', 'gbk', 'big5', 'gb2312']
+                    encodings = ['utf-8', 'gb18030', 'gbk', 'big5', 'gb2312', 'latin-1', 'cp936']
                     decoded_results = {}
                     
                     def score_chinese(decoded):
@@ -106,6 +106,41 @@ for baud in baud_list:
                         percentage = (successful_chars / original_length) * 100
                         return round(percentage, 1)
                     
+                    def try_advanced_decoding(data_bytes):
+                        """Try advanced decoding strategies"""
+                        results = {}
+                        
+                        # Strategy 1: Try with different error handling
+                        for enc in ['utf-8', 'gb18030', 'gbk']:
+                            try:
+                                # Try with 'ignore' instead of 'replace'
+                                decoded_ignore = data_bytes.decode(enc, errors='ignore')
+                                score_ignore = score_chinese(decoded_ignore)
+                                results[f"{enc}_ignore"] = f"{decoded_ignore} [score: {score_ignore}]"
+                            except:
+                                pass
+                        
+                        # Strategy 2: Try byte-by-byte analysis for patterns
+                        if len(data_bytes) > 0:
+                            # Check if data starts with common patterns
+                            first_byte = data_bytes[0]
+                            if first_byte in [0x02, 0x03, 0x06, 0x07]:  # Common control bytes
+                                results["control_analysis"] = f"Starts with control byte 0x{first_byte:02x}"
+                        
+                        # Strategy 3: Try different byte alignments (skip first byte if it's garbage)
+                        if len(data_bytes) > 1:
+                            for enc in ['utf-8', 'gbk']:
+                                try:
+                                    # Skip first byte and try decoding
+                                    decoded_skip = data_bytes[1:].decode(enc, errors='replace')
+                                    score_skip = score_chinese(decoded_skip)
+                                    if score_skip > 0:
+                                        results[f"{enc}_skip1"] = f"{decoded_skip} [score: {score_skip}]"
+                                except:
+                                    pass
+                        
+                        return results
+                    
                     for enc in encodings:
                         try:
                             # Use errors='replace' to avoid crashes and see partial results
@@ -115,6 +150,10 @@ for baud in baud_list:
                             decoded_results[enc] = f"{decoded} [score: {score}, decode: {percentage}%]"
                         except Exception as e:
                             decoded_results[enc] = f"[decode failed: {e}]"
+                    
+                    # Try advanced decoding strategies
+                    advanced_results = try_advanced_decoding(data)
+                    decoded_results.update(advanced_results)
                     
                     # Log and print all results
                     log.write(f"[{baud}] RAW: {raw}\n")
