@@ -45,7 +45,7 @@ if mode == 'm':
         exit(1)
     baud_list = [baud]
 else:
-    print("Running auto baud rate scan (5s each)...")
+    print("Running auto baud rate scan (10s each)...")
     baud_list = baud_rates
 
 # Try each baud rate
@@ -54,7 +54,7 @@ for baud in baud_list:
     try:
         with serial.Serial("/dev/ttyAMA0", baudrate=baud, timeout=1) as ser, open("log.txt", "a") as log:
             start = time.time()
-            while time.time() - start < 5:
+            while time.time() - start < 10:
                 data = ser.read(ser.in_waiting or 1)
                 if data:
                     raw = repr(data)
