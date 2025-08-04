@@ -10,7 +10,11 @@ baud_rates = [
     2400,
     4800,
     9600,
+    10400,
+    10500,
     10600,
+    10700,
+    10800,
     14400,
     19200,
     20000,
@@ -65,22 +69,31 @@ for baud in baud_list:
                 if data:
                     raw = repr(data)
                     decimal_output = [str(b) for b in data]
-                    decoded_utf8 = data.decode(errors="replace")
-                    decoded_gbk = data.decode('gbk', errors="replace")
-                    decoded_gb2312 = data.decode('gb2312', errors="replace")
                     hex_output = [hex(b) for b in data]
+                    
+                    # Try multiple encodings for Chinese text
+                    encodings = ['utf-8', 'gb18030', 'gbk', 'big5', 'gb2312']
+                    decoded_results = {}
+                    
+                    for enc in encodings:
+                        try:
+                            decoded = data.decode(enc)
+                            decoded_results[enc] = decoded
+                        except Exception as e:
+                            decoded_results[enc] = f"[decode failed: {e}]"
+                    
+                    # Log and print all results
                     log.write(f"[{baud}] RAW: {raw}\n")
                     log.write(f"[{baud}] DEC: {decimal_output}\n")
-                    log.write(f"[{baud}] DEC UTF-8: {decoded_utf8}\n")
-                    log.write(f"[{baud}] DEC GBK: {decoded_gbk}\n")
-                    log.write(f"[{baud}] DEC GB2312: {decoded_gb2312}\n")
                     log.write(f"[{baud}] HEX: {hex_output}\n")
+                    for enc, result in decoded_results.items():
+                        log.write(f"[{baud}] DEC ({enc}): {result}\n")
+                    
                     print(f"[{baud}] RAW: {raw}")
                     print(f"[{baud}] DEC: {decimal_output}")
-                    print(f"[{baud}] DEC UTF-8: {decoded_utf8}")
-                    print(f"[{baud}] DEC GBK: {decoded_gbk}")
-                    print(f"[{baud}] DEC GB2312: {decoded_gb2312}")
                     print(f"[{baud}] HEX: {hex_output}")
+                    for enc, result in decoded_results.items():
+                        print(f"[{baud}] DEC ({enc}): {result}")
     except Exception as e:
         print(f"[{baud}] Error: {e}")
 
