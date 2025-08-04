@@ -185,6 +185,7 @@ baud_list = [baud]
 #     baud_list = baud_rates
 
 # Try each baud rate
+line_counter = 0
 for baud in baud_list:
     print(f"\nTrying baud rate: {baud}")
     try:
@@ -193,6 +194,7 @@ for baud in baud_list:
             while time.time() - start < 25:
                 data = ser.read(ser.in_waiting or 1)
                 if data:
+                    line_counter += 1
                     raw = repr(data)
                     decimal_output = [str(b) for b in data]
                     hex_output = [hex(b) for b in data]
@@ -200,30 +202,30 @@ for baud in baud_list:
                     # Extract packets between 0xBE and 0xFE markers
                     packets = extract_packets(data)
                     
-                    # Log and print raw data
-                    log.write(f"[{baud}] RAW: {raw}\n")
-                    log.write(f"[{baud}] DEC: {decimal_output}\n")
-                    log.write(f"[{baud}] HEX: {hex_output}\n")
-                    log.write(f"[{baud}] HEX Only: {' '.join(hex(b) for b in data)}\n")
+                    # Log and print raw data with line number
+                    log.write(f"[{line_counter:04d}] [{baud}] RAW: {raw}\n")
+                    log.write(f"[{line_counter:04d}] [{baud}] DEC: {decimal_output}\n")
+                    log.write(f"[{line_counter:04d}] [{baud}] HEX: {hex_output}\n")
+                    log.write(f"[{line_counter:04d}] [{baud}] HEX Only: {' '.join(hex(b) for b in data)}\n")
                     
-                    print(f"[{baud}] RAW: {raw}")
-                    print(f"[{baud}] DEC: {decimal_output}")
-                    print(f"[{baud}] HEX: {hex_output}")
-                    print(f"[{baud}] HEX Only: {' '.join(hex(b) for b in data)}")
+                    print(f"[{line_counter:04d}] [{baud}] RAW: {raw}")
+                    print(f"[{line_counter:04d}] [{baud}] DEC: {decimal_output}")
+                    print(f"[{line_counter:04d}] [{baud}] HEX: {hex_output}")
+                    print(f"[{line_counter:04d}] [{baud}] HEX Only: {' '.join(hex(b) for b in data)}")
                     
                     # Process extracted packets
                     if packets:
-                        print(f"[{baud}] Found {len(packets)} packet(s):")
-                        log.write(f"[{baud}] Found {len(packets)} packet(s):\n")
+                        print(f"[{line_counter:04d}] [{baud}] Found {len(packets)} packet(s):")
+                        log.write(f"[{line_counter:04d}] [{baud}] Found {len(packets)} packet(s):\n")
                         
                         for i, (packet_data, start_pos, end_pos) in enumerate(packets):
-                            print(f"[{baud}] Packet {i+1} (pos {start_pos}-{end_pos}):")
-                            log.write(f"[{baud}] Packet {i+1} (pos {start_pos}-{end_pos}):\n")
+                            print(f"[{line_counter:04d}] [{baud}] Packet {i+1} (pos {start_pos}-{end_pos}):")
+                            log.write(f"[{line_counter:04d}] [{baud}] Packet {i+1} (pos {start_pos}-{end_pos}):\n")
                             
                             # Analyze packet structure
                             structure_analysis = analyze_packet_structure(packet_data)
-                            print(f"[{baud}]   Structure: {structure_analysis}")
-                            log.write(f"[{baud}]   Structure: {structure_analysis}\n")
+                            print(f"[{line_counter:04d}] [{baud}]   Structure: {structure_analysis}")
+                            log.write(f"[{line_counter:04d}] [{baud}]   Structure: {structure_analysis}\n")
                             
                             # Decode packet payload
                             decode_results = decode_packet_payload(packet_data)
@@ -242,27 +244,27 @@ for baud in baud_list:
                             
                             if best_encoding:
                                 best_result = decode_results[best_encoding]
-                                print(f"[{baud}]   Best decode ({best_encoding}): {best_result['text']}")
-                                print(f"[{baud}]   Success rate: {best_result['success_rate']}%, Chinese chars: {best_result['chinese_chars']}")
-                                log.write(f"[{baud}]   Best decode ({best_encoding}): {best_result['text']}\n")
-                                log.write(f"[{baud}]   Success rate: {best_result['success_rate']}%, Chinese chars: {best_result['chinese_chars']}\n")
+                                print(f"[{line_counter:04d}] [{baud}]   Best decode ({best_encoding}): {best_result['text']}")
+                                print(f"[{line_counter:04d}] [{baud}]   Success rate: {best_result['success_rate']}%, Chinese chars: {best_result['chinese_chars']}")
+                                log.write(f"[{line_counter:04d}] [{baud}]   Best decode ({best_encoding}): {best_result['text']}\n")
+                                log.write(f"[{line_counter:04d}] [{baud}]   Success rate: {best_result['success_rate']}%, Chinese chars: {best_result['chinese_chars']}\n")
                             
                             # Show all decoding attempts for debugging
-                            print(f"[{baud}]   All decode attempts:")
-                            log.write(f"[{baud}]   All decode attempts:\n")
+                            print(f"[{line_counter:04d}] [{baud}]   All decode attempts:")
+                            log.write(f"[{line_counter:04d}] [{baud}]   All decode attempts:\n")
                             for enc, result in decode_results.items():
                                 if 'error' in result:
-                                    print(f"[{baud}]     {enc}: {result['error']}")
-                                    log.write(f"[{baud}]     {enc}: {result['error']}\n")
+                                    print(f"[{line_counter:04d}] [{baud}]     {enc}: {result['error']}")
+                                    log.write(f"[{line_counter:04d}] [{baud}]     {enc}: {result['error']}\n")
                                 else:
-                                    print(f"[{baud}]     {enc}: {result['text']} (success: {result['success_rate']}%, Chinese: {result['chinese_chars']})")
-                                    log.write(f"[{baud}]     {enc}: {result['text']} (success: {result['success_rate']}%, Chinese: {result['chinese_chars']})\n")
+                                    print(f"[{line_counter:04d}] [{baud}]     {enc}: {result['text']} (success: {result['success_rate']}%, Chinese: {result['chinese_chars']})")
+                                    log.write(f"[{line_counter:04d}] [{baud}]     {enc}: {result['text']} (success: {result['success_rate']}%, Chinese: {result['chinese_chars']})\n")
                             
                             print()  # Empty line for readability
                             log.write("\n")
                     else:
-                        print(f"[{baud}] No complete packets found (0xBE...0xFE)")
-                        log.write(f"[{baud}] No complete packets found (0xBE...0xFE)\n")
+                        print(f"[{line_counter:04d}] [{baud}] No complete packets found (0xBE...0xFE)")
+                        log.write(f"[{line_counter:04d}] [{baud}] No complete packets found (0xBE...0xFE)\n")
     except Exception as e:
         print(f"[{baud}] Error: {e}")
 
