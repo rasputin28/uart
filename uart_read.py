@@ -124,8 +124,13 @@ for baud in baud_list:
                         if len(data_bytes) > 0:
                             # Check if data starts with common patterns
                             first_byte = data_bytes[0]
-                            if first_byte in [0x02, 0x03, 0x06, 0x07]:  # Common control bytes
+                            # Expanded list of control bytes and common patterns
+                            control_bytes = [0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08, 0x09, 0x0a, 0x0d, 0x0e, 0x0f, 0x1b, 0x1c, 0x1d, 0x1e, 0x1f]
+                            if first_byte in control_bytes:
                                 results["control_analysis"] = f"Starts with control byte 0x{first_byte:02x}"
+                            else:
+                                # Always show first byte analysis for debugging
+                                results["control_analysis"] = f"First byte: 0x{first_byte:02x} (not a control byte)"
                         
                         # Strategy 3: Try different byte alignments (skip first byte if it's garbage)
                         if len(data_bytes) > 1:
