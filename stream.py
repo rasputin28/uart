@@ -35,6 +35,158 @@ def select_baud_rate():
             print("Invalid input. Please enter a number.")
             print()
 
+def send_bootup_sequence(port="/dev/ttyAMA0", baudrate=baudrate):
+    """
+    Send the proper bootup sequence based on read.txt analysis
+    Phase 1: Null bytes and sync
+    Phase 2: Repeated bootup packet (multiple times)
+    """
+    print("Starting bootup sequence...")
+    print("Phase 1: System initialization")
+    
+    try:
+        with serial.Serial(port, baudrate=baudrate, timeout=1) as ser:
+            # Phase 1: Null bytes and sync (like lines 1-3 in read.txt)
+            print("  - Sending null bytes...")
+            ser.write(bytes([0x00, 0x00, 0xfe]))
+            ser.flush()
+            time.sleep(0.1)
+            
+            # Phase 2: Bootup packet (repeated multiple times like lines 4-48)
+            bootup_packet = bytes([
+                0xbe, 0xbe, 0xfe, 0xce, 0x02, 0xfe, 0xbc, 0xbe, 0xbe, 0xcc, 0xfe, 0xb2, 0xfe, 
+                0xbe, 0xcc, 0xfc, 0xf2, 0xbe, 0xc2, 0xfe, 0xb2, 0xfe, 0x0e, 0x00
+            ])
+            
+            print("Phase 2: Sending bootup packets (multiple times)")
+            print(f"  - Bootup packet: {' '.join(hex(b) for b in bootup_packet)}")
+            
+            # Send bootup packet multiple times (like the system does)
+            for i in range(20):  # Send 20 times (adjust as needed)
+                ser.write(bootup_packet)
+                ser.flush()
+                time.sleep(0.05)  # 50ms between packets
+                
+                if i % 5 == 0:
+                    print(f"    Sent {i+1} bootup packets...")
+            
+            print("✓ Bootup sequence complete!")
+            time.sleep(0.5)  # Wait for system to stabilize
+            
+    except Exception as e:
+        print(f"Error during bootup sequence: {e}")
+
+def send_real_acceleration_sequence(port="/dev/ttyAMA0", baudrate=baudrate, duration=10, frequency=15):
+    """
+    Send real acceleration commands based on read.txt analysis
+    Uses the actual acceleration parameters observed during physical throttle use
+    """
+    print(f"Starting real acceleration sequence...")
+    print(f"  - Duration: {duration} seconds")
+    print(f"  - Frequency: {frequency} packets/second")
+    print()
+    
+    # Real acceleration parameters from read.txt analysis
+    acceleration_levels = [
+        # (level, parameters) - based on lines 50, 57, 63, 71, 79
+        (0, [0xc2, 0xfe, 0xb2, 0xfe, 0x0e]),      # Idle (line 4-48)
+        (20, [0xc2, 0x0e, 0x0e, 0xf2, 0x0e, 0x0c]), # Low (line 50)
+        (40, [0x42, 0x72, 0x0c, 0xf2, 0x7e]),     # Medium (line 57)
+        (60, [0x42, 0x8e, 0x82, 0xf2, 0x82]),     # High (line 63)
+        (80, [0x42, 0xce, 0x82, 0xf2, 0xc2]),     # Very high (line 71)
+        (100, [0x42, 0xf2, 0x82, 0xf2, 0xfe])     # Maximum (line 79)
+    ]
+    
+    interval = 1.0 / frequency
+    
+    try:
+        with serial.Serial(port, baudrate=baudrate, timeout=1) as ser:
+            start_time = time.time()
+            packet_count = 0
+            
+            print("Starting acceleration transmission...")
+            print("Press Ctrl+C to stop early")
+            print()
+            
+            try:
+                while time.time() - start_time < duration:
+                    # Simulate realistic acceleration curve
+                    elapsed = time.time() - start_time
+                    progress = elapsed / duration
+                    
+                    # Create acceleration curve: start low, peak in middle, end low
+                    if progress < 0.3:
+                        # Ramp up
+                        accel_level = int(progress * 333)  # 0 to 100
+                    elif progress < 0.7:
+                        # Peak acceleration
+                        accel_level = 100
+                    else:
+                        # Ramp down
+                        accel_level = int((1 - progress) * 333)  # 100 to 0
+                    
+                    # Find the appropriate acceleration parameters
+                    accel_params = acceleration_levels[0][1]  # Default to idle
+                    for level, params in acceleration_levels:
+                        if accel_level <= level:
+                            accel_params = params
+                            break
+                    
+                    # Create the real acceleration packet
+                    packet = bytes([
+                        0xbe, 0xbe, 0xfe, 0xce, 0x02, 0xfe, 0xbc, 0xbe, 0xbe, 0xcc, 0xfe, 0xb2, 0xfe, 
+                        0xbe, 0xcc, 0xfc, 0xf2, 0xbe,  # Fixed header
+                    ] + accel_params + [0x00])  # Real acceleration parameters + end
+                    
+                    # Send the packet
+                    ser.write(packet)
+                    ser.flush()
+                    packet_count += 1
+                    
+                    # Show progress every 10 packets
+                    if packet_count % 10 == 0:
+                        elapsed = time.time() - start_time
+                        print(f"Sent {packet_count} packets in {elapsed:.1f}s (accel: {accel_level}%)")
+                    
+                    time.sleep(interval)
+                    
+            except KeyboardInterrupt:
+                print("\nStopped by user")
+            
+            elapsed = time.time() - start_time
+            print(f"\n✓ Real acceleration sequence complete!")
+            print(f"  - Packets sent: {packet_count}")
+            print(f"  - Duration: {elapsed:.1f} seconds")
+            print(f"  - Average rate: {packet_count/elapsed:.1f} packets/second")
+            
+            # Check for any final response
+            time.sleep(1)
+            if ser.in_waiting > 0:
+                response = ser.read(ser.in_waiting)
+                print(f"Final response: {[hex(b) for b in response]}")
+            else:
+                print("No final response received")
+                
+    except Exception as e:
+        print(f"Error sending real acceleration sequence: {e}")
+
+def send_complete_ebike_simulation(port="/dev/ttyAMA0", baudrate=baudrate, duration=10, frequency=15):
+    """
+    Complete ebike simulation: bootup sequence + real acceleration
+    This mimics the exact behavior observed in read.txt
+    """
+    print("=== Complete Ebike Simulation ===")
+    print("This mimics the exact behavior from read.txt:")
+    print("1. Bootup sequence (null bytes + repeated bootup packets)")
+    print("2. Real acceleration commands (from physical throttle analysis)")
+    print()
+    
+    # Step 1: Send bootup sequence
+    send_bootup_sequence(port, baudrate)
+    
+    # Step 2: Send real acceleration sequence
+    send_real_acceleration_sequence(port, baudrate, duration, frequency)
+
 def send_exact_line4_packet(port="/dev/ttyAMA0", baudrate=baudrate, duration=10, frequency=15):
     """
     Send the exact packet from line 4 of the logs repeatedly
@@ -395,9 +547,10 @@ def main():
     print("3. Send variable acceleration stream (realistic simulation)")
     print("4. Send constant acceleration stream (fixed level)")
     print("5. Show packet analysis")
-    print("6. Exit")
+    print("6. Send complete ebike simulation (bootup + real acceleration)")
+    print("7. Exit")
     
-    choice = input("Enter choice (1-6): ").strip()
+    choice = input("Enter choice (1-7): ").strip()
     
     if choice == "1":
         try:
@@ -461,7 +614,23 @@ def main():
         show_packet_analysis()
         
     elif choice == "6":
+        try:
+            duration = float(input("Enter duration in seconds for the complete simulation (e.g., 10): ").strip())
+        except ValueError:
+            duration = 10.0
+        
+        try:
+            frequency = float(input("Enter frequency in packets/second for the complete simulation (e.g., 15): ").strip())
+        except ValueError:
+            frequency = 15.0
+        
+        send_complete_ebike_simulation(duration=duration, frequency=frequency)
+        
+    elif choice == "7":
         print("Exiting...")
+        
+    else:
+        print("Invalid choice.")
         
     else:
         print("Invalid choice.")
