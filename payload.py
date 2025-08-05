@@ -133,6 +133,90 @@ def send_acceleration_packet(port="/dev/ttyAMA0", baudrate=baudrate):
     except Exception as e:
         print(f"Error sending acceleration packet: {e}")
 
+def send_repeated_packet(port="/dev/ttyAMA0", baudrate=baudrate):
+    """
+    Send a packet repeatedly at high frequency for continuous control
+    """
+    print("Enter the packet bytes to send repeatedly (hex format)")
+    print("Example: BE C2 FE B2 4E (acceleration command)")
+    print("Example: BE C2 FE 32 4E (system's acceleration value)")
+    
+    packet_input = input("Enter packet bytes (space-separated hex): ").strip()
+    
+    try:
+        # Parse the hex bytes
+        packet_bytes = [int(x, 16) for x in packet_input.split()]
+        packet = bytes(packet_bytes)
+        
+        print(f"Packet to repeat: {[hex(b) for b in packet]}")
+        print(f"Packet as bytes: {packet}")
+        
+        # Get frequency settings
+        try:
+            frequency = float(input("Enter frequency (packets per second, e.g., 10): ").strip())
+            interval = 1.0 / frequency
+        except ValueError:
+            print("Invalid frequency. Using 10 packets per second.")
+            interval = 0.1
+        
+        try:
+            duration = float(input("Enter duration in seconds (e.g., 5): ").strip())
+        except ValueError:
+            print("Invalid duration. Using 5 seconds.")
+            duration = 5.0
+        
+        print(f"Sending packet every {interval:.3f} seconds for {duration} seconds")
+        print(f"Total packets to send: {int(duration * frequency)}")
+        
+        # Confirm before sending
+        confirm = input("Start sending packets? (y/N): ").strip().lower()
+        if confirm != 'y':
+            print("Operation cancelled.")
+            return
+        
+        with serial.Serial(port, baudrate=baudrate, timeout=1) as ser:
+            start_time = time.time()
+            packet_count = 0
+            
+            print("Starting packet transmission...")
+            print("Press Ctrl+C to stop early")
+            
+            try:
+                while time.time() - start_time < duration:
+                    ser.write(packet)
+                    ser.flush()
+                    packet_count += 1
+                    
+                    # Show progress every 10 packets
+                    if packet_count % 10 == 0:
+                        elapsed = time.time() - start_time
+                        print(f"Sent {packet_count} packets in {elapsed:.1f}s")
+                    
+                    time.sleep(interval)
+                    
+            except KeyboardInterrupt:
+                print("\nStopped by user")
+            
+            elapsed = time.time() - start_time
+            print(f"✓ Transmission complete!")
+            print(f"  - Packets sent: {packet_count}")
+            print(f"  - Duration: {elapsed:.1f} seconds")
+            print(f"  - Average rate: {packet_count/elapsed:.1f} packets/second")
+            
+            # Check for any final response
+            time.sleep(1)
+            if ser.in_waiting > 0:
+                response = ser.read(ser.in_waiting)
+                print(f"Final response: {[hex(b) for b in response]}")
+            else:
+                print("No final response received")
+                
+    except ValueError as e:
+        print(f"Invalid hex format: {e}")
+        print("Make sure to use space-separated hex values (e.g., 'BE C2 FE B2 4E')")
+    except Exception as e:
+        print(f"Error sending repeated packets: {e}")
+
 def send_manual_packet(port="/dev/ttyAMA0", baudrate=baudrate):
     """
     Send a completely manual packet - user types in every byte
@@ -211,8 +295,6 @@ def select_baud_rate():
             print("Invalid input. Please enter a number.")
             print()
 
-
-
 def main():
     print("Ebike Power-On Packet Injection Tool")
     print("=" * 40)
@@ -235,9 +317,10 @@ def main():
     print("1. Send power-on packet (0xBE 0xCC 0xFE)")
     print("2. Send acceleration packet (0xBE 0xCC 0xFE 0xF2 0xBE 0xC2 0xFE 0xB2 0x4E)")
     print("3. Send manual packet (type in complete packet)")
-    print("4. Exit")
+    print("4. Send repeated packets (continuous control)")
+    print("5. Exit")
     
-    choice = input("Enter choice (1-4): ").strip()
+    choice = input("Enter choice (1-5): ").strip()
     
     if choice == "1":
         send_power_on_packet()
@@ -246,6 +329,8 @@ def main():
     elif choice == "3":
         send_manual_packet()
     elif choice == "4":
+        send_repeated_packet()
+    elif choice == "5":
         print("Exiting...")
     else:
         print("Invalid choice.")
@@ -262,6 +347,9 @@ def examples():
     print()
     print("# Send manual packet")
     print("send_manual_packet()")
+    print()
+    print("# Send repeated packets")
+    print("send_repeated_packet()")
 
 if __name__ == "__main__":
     main()
