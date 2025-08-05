@@ -3,58 +3,10 @@ import time
 
 # Default common UART baud rates
 baud_rates = [
-    110,
-    300,
-    600,
-    1200,
-    2400,
-    4800,
-    9600,
-    10400,
-    10450,
-    10500,
-    10550,
-    10600,
-    10638,
-    10650,
-    10700,
-    10800,
-    14400,
-    15000,
-    16000,
-    16200,
-    16250,
-    16300,
-    16350,
-    16400,
-    16600,
-    16800,
-    17000,
-    17600,
-    18000,
-    19000,
-    19200,
-    20000,
-    22000,
-    24000,
-    25000,
-    26000,
-    28800,
-    38400,
-    57600,
-    115200,
-    128000,
-    256000,
-    460800,
-    921600,
-    1000000,
-    1152000,
-    1500000,
-    2000000,
-    2500000,
-    3000000,
-    3500000,
-    4000000,
+    110, 300, 600, 1200, 2400, 4800, 9600, 10400, 10450, 10500, 10550, 10600, 10638, 10650, 10700, 10800,
+    14400, 15000, 16000, 16200, 16250, 16300, 16350, 16400, 16600, 16800, 17000, 17600, 18000, 19000, 19200,
+    20000, 22000, 24000, 25000, 26000, 28800, 38400, 57600, 115200, 128000, 256000, 460800, 921600, 1000000,
+    1152000, 1500000, 2000000, 2500000, 3000000, 3500000, 4000000,
 ]
 
 def extract_packets(data_bytes):
@@ -87,89 +39,7 @@ def extract_packets(data_bytes):
     
     return packets
 
-def analyze_packet_structure(packet_data):
-    """
-    Analyze the structure of a packet to understand its format.
-    """
-    if not packet_data:
-        return "Empty packet"
-    
-    analysis = []
-    
-    # Check packet length
-    analysis.append(f"Length: {len(packet_data)} bytes")
-    
-    # Check for common patterns
-    if len(packet_data) >= 1:
-        first_byte = packet_data[0]
-        analysis.append(f"First byte: 0x{first_byte:02x} ({first_byte})")
-        
-        # Common command patterns
-        if 0x01 <= first_byte <= 0x7F:
-            analysis.append(f"Possible command byte: 0x{first_byte:02x}")
-    
-    # Check for length field (common in protocols)
-    if len(packet_data) >= 2:
-        second_byte = packet_data[1]
-        analysis.append(f"Second byte: 0x{second_byte:02x} ({second_byte})")
-        
-        # If second byte matches packet length, it might be a length field
-        if second_byte == len(packet_data):
-            analysis.append("Second byte appears to be length field")
-    
-    # Check for checksum (last byte often contains checksum)
-    if len(packet_data) >= 2:
-        last_byte = packet_data[-1]
-        analysis.append(f"Last byte: 0x{last_byte:02x} ({last_byte})")
-        
-        # Simple checksum calculation
-        calculated_checksum = sum(packet_data[:-1]) & 0xFF
-        if calculated_checksum == last_byte:
-            analysis.append("Last byte appears to be checksum (simple sum)")
-    
-    # Try to identify data types
-    ascii_chars = sum(1 for b in packet_data if 32 <= b <= 126)
-    if ascii_chars > len(packet_data) * 0.7:  # More than 70% printable ASCII
-        analysis.append("Packet appears to contain mostly ASCII text")
-    
-    return " | ".join(analysis)
-
-def decode_packet_payload(packet_data):
-    """
-    Try multiple decoding strategies for packet payload.
-    """
-    if not packet_data:
-        return {"error": "Empty packet"}
-    
-    results = {}
-    
-    # Try different encodings
-    encodings = ['utf-8', 'gb18030', 'gbk', 'big5', 'gb2312', 'latin-1', 'cp936']
-    
-    for enc in encodings:
-        try:
-            decoded = packet_data.decode(enc, errors='replace')
-            # Count Chinese characters
-            chinese_chars = sum(1 for ch in decoded if '\u4e00' <= ch <= '\u9fff')
-            # Count replacement characters (decode failures)
-            replacement_chars = decoded.count('')
-            success_rate = ((len(decoded) - replacement_chars) / len(decoded)) * 100 if decoded else 0
-            
-            results[enc] = {
-                'text': decoded,
-                'chinese_chars': chinese_chars,
-                'success_rate': round(success_rate, 1),
-                'replacement_chars': replacement_chars
-            }
-        except Exception as e:
-            results[enc] = {'error': str(e)}
-    
-    return results
-
 # Prompt user for mode
-# mode = input("Select mode: [a]uto baud detect or [m]anual selection? ").strip().lower()
-
-# if mode == 'm':
 print("Available baud rates:")
 for i, br in enumerate(baud_rates):
     print(f"{i + 1}: {br}")
@@ -180,9 +50,6 @@ except:
     print("Invalid selection.")
     exit(1)
 baud_list = [baud]
-# else:
-#     print("Running auto baud rate scan (10s each)...")
-#     baud_list = baud_rates
 
 # Try each baud rate
 line_counter = 0
@@ -222,43 +89,14 @@ for baud in baud_list:
                             print(f"[{line_counter:04d}] [{baud}] Packet {i+1} (pos {start_pos}-{end_pos}):")
                             log.write(f"[{line_counter:04d}] [{baud}] Packet {i+1} (pos {start_pos}-{end_pos}):\n")
                             
-                            # Analyze packet structure
-                            structure_analysis = analyze_packet_structure(packet_data)
-                            print(f"[{line_counter:04d}] [{baud}]   Structure: {structure_analysis}")
-                            log.write(f"[{line_counter:04d}] [{baud}]   Structure: {structure_analysis}\n")
+                            # Show packet data in hex and decimal
+                            packet_hex = [hex(b) for b in packet_data]
+                            packet_dec = [str(b) for b in packet_data]
                             
-                            # Decode packet payload
-                            decode_results = decode_packet_payload(packet_data)
-                            
-                            # Show best decoding results
-                            best_encoding = None
-                            best_score = -1
-                            
-                            for enc, result in decode_results.items():
-                                if 'error' not in result:
-                                    # Prioritize high success rate and Chinese characters
-                                    score = result['success_rate'] + (result['chinese_chars'] * 10)
-                                    if score > best_score:
-                                        best_score = score
-                                        best_encoding = enc
-                            
-                            if best_encoding:
-                                best_result = decode_results[best_encoding]
-                                print(f"[{line_counter:04d}] [{baud}]   Best decode ({best_encoding}): {best_result['text']}")
-                                print(f"[{line_counter:04d}] [{baud}]   Success rate: {best_result['success_rate']}%, Chinese chars: {best_result['chinese_chars']}")
-                                log.write(f"[{line_counter:04d}] [{baud}]   Best decode ({best_encoding}): {best_result['text']}\n")
-                                log.write(f"[{line_counter:04d}] [{baud}]   Success rate: {best_result['success_rate']}%, Chinese chars: {best_result['chinese_chars']}\n")
-                            
-                            # Show all decoding attempts for debugging
-                            print(f"[{line_counter:04d}] [{baud}]   All decode attempts:")
-                            log.write(f"[{line_counter:04d}] [{baud}]   All decode attempts:\n")
-                            for enc, result in decode_results.items():
-                                if 'error' in result:
-                                    print(f"[{line_counter:04d}] [{baud}]     {enc}: {result['error']}")
-                                    log.write(f"[{line_counter:04d}] [{baud}]     {enc}: {result['error']}\n")
-                                else:
-                                    print(f"[{line_counter:04d}] [{baud}]     {enc}: {result['text']} (success: {result['success_rate']}%, Chinese: {result['chinese_chars']})")
-                                    log.write(f"[{line_counter:04d}] [{baud}]     {enc}: {result['text']} (success: {result['success_rate']}%, Chinese: {result['chinese_chars']})\n")
+                            print(f"[{line_counter:04d}] [{baud}]   HEX: {packet_hex}")
+                            print(f"[{line_counter:04d}] [{baud}]   DEC: {packet_dec}")
+                            log.write(f"[{line_counter:04d}] [{baud}]   HEX: {packet_hex}\n")
+                            log.write(f"[{line_counter:04d}] [{baud}]   DEC: {packet_dec}\n")
                             
                             print()  # Empty line for readability
                             log.write("\n")
