@@ -96,6 +96,43 @@ def send_power_on_packet(port="/dev/ttyAMA0", baudrate=baudrate):
     except Exception as e:
         print(f"Error sending power-on packet: {e}")
 
+def send_acceleration_packet(port="/dev/ttyAMA0", baudrate=baudrate):
+    """
+    Send the acceleration packet: 0xBE 0xCC 0xFE 0xF2 0xBE 0xC2 0xFE 0xB2 0x4E
+    """
+    acceleration_packet = bytes([0xBE, 0xCC, 0xFE, 0xF2, 0xBE, 0xC2, 0xFE, 0xB2, 0x4E])
+    
+    print(f"Sending acceleration packet: {[hex(b) for b in acceleration_packet]}")
+    print(f"Packet bytes: {acceleration_packet}")
+    print(f"Expected effect: Accelerate the ebike")
+    print(f"Packet structure:")
+    print(f"  - Part 1: 0xBE 0xCC 0xFE (Power-on command)")
+    print(f"  - Part 2: 0xF2 (Delimiter/Parameter)")
+    print(f"  - Part 3: 0xBE 0xC2 0xFE (Acceleration command)")
+    print(f"  - Part 4: 0xB2 0x4E (Parameters)")
+    
+    try:
+        with serial.Serial(port, baudrate=baudrate, timeout=1) as ser:
+            # Send the packet
+            ser.write(acceleration_packet)
+            ser.flush()  # Ensure all data is sent
+            
+            print(f"✓ Acceleration packet sent successfully!")
+            
+            # Wait a moment to see if there's any response
+            time.sleep(2)
+            
+            # Check for any response
+            if ser.in_waiting > 0:
+                response = ser.read(ser.in_waiting)
+                print(f"Response received: {[hex(b) for b in response]}")
+                print(f"Response as bytes: {response}")
+            else:
+                print("No immediate response received (this is normal for acceleration commands)")
+                
+    except Exception as e:
+        print(f"Error sending acceleration packet: {e}")
+
 def send_manual_packet(port="/dev/ttyAMA0", baudrate=baudrate):
     """
     Send a completely manual packet - user types in every byte
@@ -196,16 +233,19 @@ def main():
     
     print("\nSelect operation:")
     print("1. Send power-on packet (0xBE 0xCC 0xFE)")
-    print("2. Send manual packet (type in complete packet)")
-    print("3. Exit")
+    print("2. Send acceleration packet (0xBE 0xCC 0xFE 0xF2 0xBE 0xC2 0xFE 0xB2 0x4E)")
+    print("3. Send manual packet (type in complete packet)")
+    print("4. Exit")
     
-    choice = input("Enter choice (1-3): ").strip()
+    choice = input("Enter choice (1-4): ").strip()
     
     if choice == "1":
         send_power_on_packet()
     elif choice == "2":
-        send_manual_packet()
+        send_acceleration_packet()
     elif choice == "3":
+        send_manual_packet()
+    elif choice == "4":
         print("Exiting...")
     else:
         print("Invalid choice.")
