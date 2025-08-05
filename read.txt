@@ -1,0 +1,848 @@
+
+Trying baud rate: 16250
+[0001] [16250] RAW: b'\x00'
+[0001] [16250] DEC: ['0']
+[0001] [16250] HEX: ['0x0']
+[0001] [16250] HEX Only: 0x0
+[0001] [16250] No complete packets found (0xBE...0xFE)
+[0002] [16250] RAW: b'\x00'
+[0002] [16250] DEC: ['0']
+[0002] [16250] HEX: ['0x0']
+[0002] [16250] HEX Only: 0x0
+[0002] [16250] No complete packets found (0xBE...0xFE)
+[0003] [16250] RAW: b'\xfe'
+[0003] [16250] DEC: ['254']
+[0003] [16250] HEX: ['0xfe']
+[0003] [16250] HEX Only: 0xfe
+[0003] [16250] No complete packets found (0xBE...0xFE)
+[0004] [16250] RAW: b'\xbe\xbe\xfe\xce\x02\xfe\xbc\xbe\xbe\xcc\xfe\xb2\xfe\xbe\xcc\xfc\xf2\xbe\xc2\xfe\xb2\xfe\x0e\x00'
+[0004] [16250] DEC: ['190', '190', '254', '206', '2', '254', '188', '190', '190', '204', '254', '178', '254', '190', '204', '252', '242', '190', '194', '254', '178', '254', '14', '0']
+[0004] [16250] HEX: ['0xbe', '0xbe', '0xfe', '0xce', '0x2', '0xfe', '0xbc', '0xbe', '0xbe', '0xcc', '0xfe', '0xb2', '0xfe', '0xbe', '0xcc', '0xfc', '0xf2', '0xbe', '0xc2', '0xfe', '0xb2', '0xfe', '0xe', '0x0']
+[0004] [16250] HEX Only: 0xbe 0xbe 0xfe 0xce 0x2 0xfe 0xbc 0xbe 0xbe 0xcc 0xfe 0xb2 0xfe 0xbe 0xcc 0xfc 0xf2 0xbe 0xc2 0xfe 0xb2 0xfe 0xe 0x0
+[0004] [16250] Found 3 packet(s):
+[0004] [16250] Packet 1 (pos 0-2):
+[0004] [16250]   HEX: ['0xbe']
+[0004] [16250]   DEC: ['190']
+
+[0004] [16250] Packet 2 (pos 7-10):
+[0004] [16250]   HEX: ['0xbe', '0xcc']
+[0004] [16250]   DEC: ['190', '204']
+
+[0004] [16250] Packet 3 (pos 13-19):
+[0004] [16250]   HEX: ['0xcc', '0xfc', '0xf2', '0xbe', '0xc2']
+[0004] [16250]   DEC: ['204', '252', '242', '190', '194']
+
+[0005] [16250] RAW: b'\xfe'
+[0005] [16250] DEC: ['254']
+[0005] [16250] HEX: ['0xfe']
+[0005] [16250] HEX Only: 0xfe
+[0005] [16250] No complete packets found (0xBE...0xFE)
+[0006] [16250] RAW: b'\xbe\xbe\xfe\xce\x02\xfe\xbc\xbe\xbe\xcc\xfe\xb2\xfe\xbe\xcc\xfc\xf2\xbe\xc2\xfe\xb2\xfe\x0e\x00'
+[0006] [16250] DEC: ['190', '190', '254', '206', '2', '254', '188', '190', '190', '204', '254', '178', '254', '190', '204', '252', '242', '190', '194', '254', '178', '254', '14', '0']
+[0006] [16250] HEX: ['0xbe', '0xbe', '0xfe', '0xce', '0x2', '0xfe', '0xbc', '0xbe', '0xbe', '0xcc', '0xfe', '0xb2', '0xfe', '0xbe', '0xcc', '0xfc', '0xf2', '0xbe', '0xc2', '0xfe', '0xb2', '0xfe', '0xe', '0x0']
+[0006] [16250] HEX Only: 0xbe 0xbe 0xfe 0xce 0x2 0xfe 0xbc 0xbe 0xbe 0xcc 0xfe 0xb2 0xfe 0xbe 0xcc 0xfc 0xf2 0xbe 0xc2 0xfe 0xb2 0xfe 0xe 0x0
+[0006] [16250] Found 3 packet(s):
+[0006] [16250] Packet 1 (pos 0-2):
+[0006] [16250]   HEX: ['0xbe']
+[0006] [16250]   DEC: ['190']
+
+[0006] [16250] Packet 2 (pos 7-10):
+[0006] [16250]   HEX: ['0xbe', '0xcc']
+[0006] [16250]   DEC: ['190', '204']
+
+[0006] [16250] Packet 3 (pos 13-19):
+[0006] [16250]   HEX: ['0xcc', '0xfc', '0xf2', '0xbe', '0xc2']
+[0006] [16250]   DEC: ['204', '252', '242', '190', '194']
+
+[0007] [16250] RAW: b'\xfe'
+[0007] [16250] DEC: ['254']
+[0007] [16250] HEX: ['0xfe']
+[0007] [16250] HEX Only: 0xfe
+[0007] [16250] No complete packets found (0xBE...0xFE)
+[0008] [16250] RAW: b'\xbe\xbe\xfe\xce\x02\xfe\xbc\xbe\xbe\xcc\xfe\xb2\xfe\xbe\xcc\xfc\xf2\xbe\xc2\xfe\xb2\xfe\x0e\x00'
+[0008] [16250] DEC: ['190', '190', '254', '206', '2', '254', '188', '190', '190', '204', '254', '178', '254', '190', '204', '252', '242', '190', '194', '254', '178', '254', '14', '0']
+[0008] [16250] HEX: ['0xbe', '0xbe', '0xfe', '0xce', '0x2', '0xfe', '0xbc', '0xbe', '0xbe', '0xcc', '0xfe', '0xb2', '0xfe', '0xbe', '0xcc', '0xfc', '0xf2', '0xbe', '0xc2', '0xfe', '0xb2', '0xfe', '0xe', '0x0']
+[0008] [16250] HEX Only: 0xbe 0xbe 0xfe 0xce 0x2 0xfe 0xbc 0xbe 0xbe 0xcc 0xfe 0xb2 0xfe 0xbe 0xcc 0xfc 0xf2 0xbe 0xc2 0xfe 0xb2 0xfe 0xe 0x0
+[0008] [16250] Found 3 packet(s):
+[0008] [16250] Packet 1 (pos 0-2):
+[0008] [16250]   HEX: ['0xbe']
+[0008] [16250]   DEC: ['190']
+
+[0008] [16250] Packet 2 (pos 7-10):
+[0008] [16250]   HEX: ['0xbe', '0xcc']
+[0008] [16250]   DEC: ['190', '204']
+
+[0008] [16250] Packet 3 (pos 13-19):
+[0008] [16250]   HEX: ['0xcc', '0xfc', '0xf2', '0xbe', '0xc2']
+[0008] [16250]   DEC: ['204', '252', '242', '190', '194']
+
+[0009] [16250] RAW: b'\xfe'
+[0009] [16250] DEC: ['254']
+[0009] [16250] HEX: ['0xfe']
+[0009] [16250] HEX Only: 0xfe
+[0009] [16250] No complete packets found (0xBE...0xFE)
+[0010] [16250] RAW: b'\xbe\xbe\xfe\xce\x02\xfe\xbc\xbe\xbe\xcc\xfe\xb2\xfe\xbe\xcc\xfc\xf2\xbe\xc2\xfe\xb2\xfe\x0e\x00'
+[0010] [16250] DEC: ['190', '190', '254', '206', '2', '254', '188', '190', '190', '204', '254', '178', '254', '190', '204', '252', '242', '190', '194', '254', '178', '254', '14', '0']
+[0010] [16250] HEX: ['0xbe', '0xbe', '0xfe', '0xce', '0x2', '0xfe', '0xbc', '0xbe', '0xbe', '0xcc', '0xfe', '0xb2', '0xfe', '0xbe', '0xcc', '0xfc', '0xf2', '0xbe', '0xc2', '0xfe', '0xb2', '0xfe', '0xe', '0x0']
+[0010] [16250] HEX Only: 0xbe 0xbe 0xfe 0xce 0x2 0xfe 0xbc 0xbe 0xbe 0xcc 0xfe 0xb2 0xfe 0xbe 0xcc 0xfc 0xf2 0xbe 0xc2 0xfe 0xb2 0xfe 0xe 0x0
+[0010] [16250] Found 3 packet(s):
+[0010] [16250] Packet 1 (pos 0-2):
+[0010] [16250]   HEX: ['0xbe']
+[0010] [16250]   DEC: ['190']
+
+[0010] [16250] Packet 2 (pos 7-10):
+[0010] [16250]   HEX: ['0xbe', '0xcc']
+[0010] [16250]   DEC: ['190', '204']
+
+[0010] [16250] Packet 3 (pos 13-19):
+[0010] [16250]   HEX: ['0xcc', '0xfc', '0xf2', '0xbe', '0xc2']
+[0010] [16250]   DEC: ['204', '252', '242', '190', '194']
+
+[0011] [16250] RAW: b'\xfe'
+[0011] [16250] DEC: ['254']
+[0011] [16250] HEX: ['0xfe']
+[0011] [16250] HEX Only: 0xfe
+[0011] [16250] No complete packets found (0xBE...0xFE)
+[0012] [16250] RAW: b'\xbe\xbe\xfe\xce\x02\xfe\xbc\xbe\xbe\xcc\xfe\xb2\xfe\xbe\xcc\xfc\xf2\xbe\xc2\xfe\xb2\xfe\x0e\x00'
+[0012] [16250] DEC: ['190', '190', '254', '206', '2', '254', '188', '190', '190', '204', '254', '178', '254', '190', '204', '252', '242', '190', '194', '254', '178', '254', '14', '0']
+[0012] [16250] HEX: ['0xbe', '0xbe', '0xfe', '0xce', '0x2', '0xfe', '0xbc', '0xbe', '0xbe', '0xcc', '0xfe', '0xb2', '0xfe', '0xbe', '0xcc', '0xfc', '0xf2', '0xbe', '0xc2', '0xfe', '0xb2', '0xfe', '0xe', '0x0']
+[0012] [16250] HEX Only: 0xbe 0xbe 0xfe 0xce 0x2 0xfe 0xbc 0xbe 0xbe 0xcc 0xfe 0xb2 0xfe 0xbe 0xcc 0xfc 0xf2 0xbe 0xc2 0xfe 0xb2 0xfe 0xe 0x0
+[0012] [16250] Found 3 packet(s):
+[0012] [16250] Packet 1 (pos 0-2):
+[0012] [16250]   HEX: ['0xbe']
+[0012] [16250]   DEC: ['190']
+
+[0012] [16250] Packet 2 (pos 7-10):
+[0012] [16250]   HEX: ['0xbe', '0xcc']
+[0012] [16250]   DEC: ['190', '204']
+
+[0012] [16250] Packet 3 (pos 13-19):
+[0012] [16250]   HEX: ['0xcc', '0xfc', '0xf2', '0xbe', '0xc2']
+[0012] [16250]   DEC: ['204', '252', '242', '190', '194']
+
+[0013] [16250] RAW: b'\xfe'
+[0013] [16250] DEC: ['254']
+[0013] [16250] HEX: ['0xfe']
+[0013] [16250] HEX Only: 0xfe
+[0013] [16250] No complete packets found (0xBE...0xFE)
+[0014] [16250] RAW: b'\xbe\xbe\xfe\xce\x02\xfe\xbc\xbe\xbe\xcc\xfe\xb2\xfe\xbe\xcc\xfc\xf2\xbe\xc2\xfe\xb2\xfe\x0e\x00'
+[0014] [16250] DEC: ['190', '190', '254', '206', '2', '254', '188', '190', '190', '204', '254', '178', '254', '190', '204', '252', '242', '190', '194', '254', '178', '254', '14', '0']
+[0014] [16250] HEX: ['0xbe', '0xbe', '0xfe', '0xce', '0x2', '0xfe', '0xbc', '0xbe', '0xbe', '0xcc', '0xfe', '0xb2', '0xfe', '0xbe', '0xcc', '0xfc', '0xf2', '0xbe', '0xc2', '0xfe', '0xb2', '0xfe', '0xe', '0x0']
+[0014] [16250] HEX Only: 0xbe 0xbe 0xfe 0xce 0x2 0xfe 0xbc 0xbe 0xbe 0xcc 0xfe 0xb2 0xfe 0xbe 0xcc 0xfc 0xf2 0xbe 0xc2 0xfe 0xb2 0xfe 0xe 0x0
+[0014] [16250] Found 3 packet(s):
+[0014] [16250] Packet 1 (pos 0-2):
+[0014] [16250]   HEX: ['0xbe']
+[0014] [16250]   DEC: ['190']
+
+[0014] [16250] Packet 2 (pos 7-10):
+[0014] [16250]   HEX: ['0xbe', '0xcc']
+[0014] [16250]   DEC: ['190', '204']
+
+[0014] [16250] Packet 3 (pos 13-19):
+[0014] [16250]   HEX: ['0xcc', '0xfc', '0xf2', '0xbe', '0xc2']
+[0014] [16250]   DEC: ['204', '252', '242', '190', '194']
+
+[0015] [16250] RAW: b'\xfe'
+[0015] [16250] DEC: ['254']
+[0015] [16250] HEX: ['0xfe']
+[0015] [16250] HEX Only: 0xfe
+[0015] [16250] No complete packets found (0xBE...0xFE)
+[0016] [16250] RAW: b'\xbe\xbe\xfe\xce\x02\xfe\xbc\xbe\xbe\xcc\xfe\xb2\xfe\xbe\xcc\xfc\xf2\xbe\xc2\xfe\xb2\xfe\x0e\x00'
+[0016] [16250] DEC: ['190', '190', '254', '206', '2', '254', '188', '190', '190', '204', '254', '178', '254', '190', '204', '252', '242', '190', '194', '254', '178', '254', '14', '0']
+[0016] [16250] HEX: ['0xbe', '0xbe', '0xfe', '0xce', '0x2', '0xfe', '0xbc', '0xbe', '0xbe', '0xcc', '0xfe', '0xb2', '0xfe', '0xbe', '0xcc', '0xfc', '0xf2', '0xbe', '0xc2', '0xfe', '0xb2', '0xfe', '0xe', '0x0']
+[0016] [16250] HEX Only: 0xbe 0xbe 0xfe 0xce 0x2 0xfe 0xbc 0xbe 0xbe 0xcc 0xfe 0xb2 0xfe 0xbe 0xcc 0xfc 0xf2 0xbe 0xc2 0xfe 0xb2 0xfe 0xe 0x0
+[0016] [16250] Found 3 packet(s):
+[0016] [16250] Packet 1 (pos 0-2):
+[0016] [16250]   HEX: ['0xbe']
+[0016] [16250]   DEC: ['190']
+
+[0016] [16250] Packet 2 (pos 7-10):
+[0016] [16250]   HEX: ['0xbe', '0xcc']
+[0016] [16250]   DEC: ['190', '204']
+
+[0016] [16250] Packet 3 (pos 13-19):
+[0016] [16250]   HEX: ['0xcc', '0xfc', '0xf2', '0xbe', '0xc2']
+[0016] [16250]   DEC: ['204', '252', '242', '190', '194']
+
+[0017] [16250] RAW: b'\xfe'
+[0017] [16250] DEC: ['254']
+[0017] [16250] HEX: ['0xfe']
+[0017] [16250] HEX Only: 0xfe
+[0017] [16250] No complete packets found (0xBE...0xFE)
+[0018] [16250] RAW: b'\xbe\xbe\xfe\xce\x02\xfe\xbc\xbe\xbe\xcc\xfe\xb2\xfe\xbe\xcc\xfc\xf2\xbe\xc2\xfe\xb2\xfe\x0e\x00'
+[0018] [16250] DEC: ['190', '190', '254', '206', '2', '254', '188', '190', '190', '204', '254', '178', '254', '190', '204', '252', '242', '190', '194', '254', '178', '254', '14', '0']
+[0018] [16250] HEX: ['0xbe', '0xbe', '0xfe', '0xce', '0x2', '0xfe', '0xbc', '0xbe', '0xbe', '0xcc', '0xfe', '0xb2', '0xfe', '0xbe', '0xcc', '0xfc', '0xf2', '0xbe', '0xc2', '0xfe', '0xb2', '0xfe', '0xe', '0x0']
+[0018] [16250] HEX Only: 0xbe 0xbe 0xfe 0xce 0x2 0xfe 0xbc 0xbe 0xbe 0xcc 0xfe 0xb2 0xfe 0xbe 0xcc 0xfc 0xf2 0xbe 0xc2 0xfe 0xb2 0xfe 0xe 0x0
+[0018] [16250] Found 3 packet(s):
+[0018] [16250] Packet 1 (pos 0-2):
+[0018] [16250]   HEX: ['0xbe']
+[0018] [16250]   DEC: ['190']
+
+[0018] [16250] Packet 2 (pos 7-10):
+[0018] [16250]   HEX: ['0xbe', '0xcc']
+[0018] [16250]   DEC: ['190', '204']
+
+[0018] [16250] Packet 3 (pos 13-19):
+[0018] [16250]   HEX: ['0xcc', '0xfc', '0xf2', '0xbe', '0xc2']
+[0018] [16250]   DEC: ['204', '252', '242', '190', '194']
+
+[0019] [16250] RAW: b'\xfe'
+[0019] [16250] DEC: ['254']
+[0019] [16250] HEX: ['0xfe']
+[0019] [16250] HEX Only: 0xfe
+[0019] [16250] No complete packets found (0xBE...0xFE)
+[0020] [16250] RAW: b'\xbe\xbe\xfe\xce\x02\xfe\xbc\xbe\xbe\xcc\xfe\xb2\xfe\xbe\xcc\xfc\xf2\xbe\xc2\xfe\xb2\xfe\x0e\x00'
+[0020] [16250] DEC: ['190', '190', '254', '206', '2', '254', '188', '190', '190', '204', '254', '178', '254', '190', '204', '252', '242', '190', '194', '254', '178', '254', '14', '0']
+[0020] [16250] HEX: ['0xbe', '0xbe', '0xfe', '0xce', '0x2', '0xfe', '0xbc', '0xbe', '0xbe', '0xcc', '0xfe', '0xb2', '0xfe', '0xbe', '0xcc', '0xfc', '0xf2', '0xbe', '0xc2', '0xfe', '0xb2', '0xfe', '0xe', '0x0']
+[0020] [16250] HEX Only: 0xbe 0xbe 0xfe 0xce 0x2 0xfe 0xbc 0xbe 0xbe 0xcc 0xfe 0xb2 0xfe 0xbe 0xcc 0xfc 0xf2 0xbe 0xc2 0xfe 0xb2 0xfe 0xe 0x0
+[0020] [16250] Found 3 packet(s):
+[0020] [16250] Packet 1 (pos 0-2):
+[0020] [16250]   HEX: ['0xbe']
+[0020] [16250]   DEC: ['190']
+
+[0020] [16250] Packet 2 (pos 7-10):
+[0020] [16250]   HEX: ['0xbe', '0xcc']
+[0020] [16250]   DEC: ['190', '204']
+
+[0020] [16250] Packet 3 (pos 13-19):
+[0020] [16250]   HEX: ['0xcc', '0xfc', '0xf2', '0xbe', '0xc2']
+[0020] [16250]   DEC: ['204', '252', '242', '190', '194']
+
+[0021] [16250] RAW: b'\xfe'
+[0021] [16250] DEC: ['254']
+[0021] [16250] HEX: ['0xfe']
+[0021] [16250] HEX Only: 0xfe
+[0021] [16250] No complete packets found (0xBE...0xFE)
+[0022] [16250] RAW: b'\xbe\xbe\xfe\xce\x02\xfe\xbc\xbe\xbe\xcc\xfe\xb2\xfe\xbe\xcc\xfc\xf2\xbe\xc2\xfe\xb2\xfe\x0e\x00'
+[0022] [16250] DEC: ['190', '190', '254', '206', '2', '254', '188', '190', '190', '204', '254', '178', '254', '190', '204', '252', '242', '190', '194', '254', '178', '254', '14', '0']
+[0022] [16250] HEX: ['0xbe', '0xbe', '0xfe', '0xce', '0x2', '0xfe', '0xbc', '0xbe', '0xbe', '0xcc', '0xfe', '0xb2', '0xfe', '0xbe', '0xcc', '0xfc', '0xf2', '0xbe', '0xc2', '0xfe', '0xb2', '0xfe', '0xe', '0x0']
+[0022] [16250] HEX Only: 0xbe 0xbe 0xfe 0xce 0x2 0xfe 0xbc 0xbe 0xbe 0xcc 0xfe 0xb2 0xfe 0xbe 0xcc 0xfc 0xf2 0xbe 0xc2 0xfe 0xb2 0xfe 0xe 0x0
+[0022] [16250] Found 3 packet(s):
+[0022] [16250] Packet 1 (pos 0-2):
+[0022] [16250]   HEX: ['0xbe']
+[0022] [16250]   DEC: ['190']
+
+[0022] [16250] Packet 2 (pos 7-10):
+[0022] [16250]   HEX: ['0xbe', '0xcc']
+[0022] [16250]   DEC: ['190', '204']
+
+[0022] [16250] Packet 3 (pos 13-19):
+[0022] [16250]   HEX: ['0xcc', '0xfc', '0xf2', '0xbe', '0xc2']
+[0022] [16250]   DEC: ['204', '252', '242', '190', '194']
+
+[0023] [16250] RAW: b'\xfe'
+[0023] [16250] DEC: ['254']
+[0023] [16250] HEX: ['0xfe']
+[0023] [16250] HEX Only: 0xfe
+[0023] [16250] No complete packets found (0xBE...0xFE)
+[0024] [16250] RAW: b'\xbe\xbe\xfe\xce\x02\xfe\xbc\xbe\xbe\xcc\xfe\xb2\xfe\xbe\xcc\xfc\xf2\xbe\xc2\xfe\xb2\xfe\x0e\x00'
+[0024] [16250] DEC: ['190', '190', '254', '206', '2', '254', '188', '190', '190', '204', '254', '178', '254', '190', '204', '252', '242', '190', '194', '254', '178', '254', '14', '0']
+[0024] [16250] HEX: ['0xbe', '0xbe', '0xfe', '0xce', '0x2', '0xfe', '0xbc', '0xbe', '0xbe', '0xcc', '0xfe', '0xb2', '0xfe', '0xbe', '0xcc', '0xfc', '0xf2', '0xbe', '0xc2', '0xfe', '0xb2', '0xfe', '0xe', '0x0']
+[0024] [16250] HEX Only: 0xbe 0xbe 0xfe 0xce 0x2 0xfe 0xbc 0xbe 0xbe 0xcc 0xfe 0xb2 0xfe 0xbe 0xcc 0xfc 0xf2 0xbe 0xc2 0xfe 0xb2 0xfe 0xe 0x0
+[0024] [16250] Found 3 packet(s):
+[0024] [16250] Packet 1 (pos 0-2):
+[0024] [16250]   HEX: ['0xbe']
+[0024] [16250]   DEC: ['190']
+
+[0024] [16250] Packet 2 (pos 7-10):
+[0024] [16250]   HEX: ['0xbe', '0xcc']
+[0024] [16250]   DEC: ['190', '204']
+
+[0024] [16250] Packet 3 (pos 13-19):
+[0024] [16250]   HEX: ['0xcc', '0xfc', '0xf2', '0xbe', '0xc2']
+[0024] [16250]   DEC: ['204', '252', '242', '190', '194']
+
+[0025] [16250] RAW: b'\xfe'
+[0025] [16250] DEC: ['254']
+[0025] [16250] HEX: ['0xfe']
+[0025] [16250] HEX Only: 0xfe
+[0025] [16250] No complete packets found (0xBE...0xFE)
+[0026] [16250] RAW: b'\xbe\xbe\xfe\xce\x02\xfe\xbc\xbe\xbe\xcc\xfe\xb2\xfe\xbe\xcc\xfc\xf2\xbe\xc2\xfe\xb2\xfe\x0e\x00'
+[0026] [16250] DEC: ['190', '190', '254', '206', '2', '254', '188', '190', '190', '204', '254', '178', '254', '190', '204', '252', '242', '190', '194', '254', '178', '254', '14', '0']
+[0026] [16250] HEX: ['0xbe', '0xbe', '0xfe', '0xce', '0x2', '0xfe', '0xbc', '0xbe', '0xbe', '0xcc', '0xfe', '0xb2', '0xfe', '0xbe', '0xcc', '0xfc', '0xf2', '0xbe', '0xc2', '0xfe', '0xb2', '0xfe', '0xe', '0x0']
+[0026] [16250] HEX Only: 0xbe 0xbe 0xfe 0xce 0x2 0xfe 0xbc 0xbe 0xbe 0xcc 0xfe 0xb2 0xfe 0xbe 0xcc 0xfc 0xf2 0xbe 0xc2 0xfe 0xb2 0xfe 0xe 0x0
+[0026] [16250] Found 3 packet(s):
+[0026] [16250] Packet 1 (pos 0-2):
+[0026] [16250]   HEX: ['0xbe']
+[0026] [16250]   DEC: ['190']
+
+[0026] [16250] Packet 2 (pos 7-10):
+[0026] [16250]   HEX: ['0xbe', '0xcc']
+[0026] [16250]   DEC: ['190', '204']
+
+[0026] [16250] Packet 3 (pos 13-19):
+[0026] [16250]   HEX: ['0xcc', '0xfc', '0xf2', '0xbe', '0xc2']
+[0026] [16250]   DEC: ['204', '252', '242', '190', '194']
+
+[0027] [16250] RAW: b'\xfe'
+[0027] [16250] DEC: ['254']
+[0027] [16250] HEX: ['0xfe']
+[0027] [16250] HEX Only: 0xfe
+[0027] [16250] No complete packets found (0xBE...0xFE)
+[0028] [16250] RAW: b'\xbe\xbe\xfe\xce\x02\xfe\xbc\xbe\xbe\xcc\xfe\xb2\xfe\xbe\xcc\xfc\xf2\xbe\xc2\xfe\xb2\xfe\x0e\x00'
+[0028] [16250] DEC: ['190', '190', '254', '206', '2', '254', '188', '190', '190', '204', '254', '178', '254', '190', '204', '252', '242', '190', '194', '254', '178', '254', '14', '0']
+[0028] [16250] HEX: ['0xbe', '0xbe', '0xfe', '0xce', '0x2', '0xfe', '0xbc', '0xbe', '0xbe', '0xcc', '0xfe', '0xb2', '0xfe', '0xbe', '0xcc', '0xfc', '0xf2', '0xbe', '0xc2', '0xfe', '0xb2', '0xfe', '0xe', '0x0']
+[0028] [16250] HEX Only: 0xbe 0xbe 0xfe 0xce 0x2 0xfe 0xbc 0xbe 0xbe 0xcc 0xfe 0xb2 0xfe 0xbe 0xcc 0xfc 0xf2 0xbe 0xc2 0xfe 0xb2 0xfe 0xe 0x0
+[0028] [16250] Found 3 packet(s):
+[0028] [16250] Packet 1 (pos 0-2):
+[0028] [16250]   HEX: ['0xbe']
+[0028] [16250]   DEC: ['190']
+
+[0028] [16250] Packet 2 (pos 7-10):
+[0028] [16250]   HEX: ['0xbe', '0xcc']
+[0028] [16250]   DEC: ['190', '204']
+
+[0028] [16250] Packet 3 (pos 13-19):
+[0028] [16250]   HEX: ['0xcc', '0xfc', '0xf2', '0xbe', '0xc2']
+[0028] [16250]   DEC: ['204', '252', '242', '190', '194']
+
+[0029] [16250] RAW: b'\xfe'
+[0029] [16250] DEC: ['254']
+[0029] [16250] HEX: ['0xfe']
+[0029] [16250] HEX Only: 0xfe
+[0029] [16250] No complete packets found (0xBE...0xFE)
+[0030] [16250] RAW: b'\xbe\xbe\xfe\xce\x02\xfe\xbc\xbe\xbe\xcc\xfe\xb2\xfe\xbe\xcc\xfc\xf2\xbe\xc2\xfe\xb2\xfe\x0e\x00'
+[0030] [16250] DEC: ['190', '190', '254', '206', '2', '254', '188', '190', '190', '204', '254', '178', '254', '190', '204', '252', '242', '190', '194', '254', '178', '254', '14', '0']
+[0030] [16250] HEX: ['0xbe', '0xbe', '0xfe', '0xce', '0x2', '0xfe', '0xbc', '0xbe', '0xbe', '0xcc', '0xfe', '0xb2', '0xfe', '0xbe', '0xcc', '0xfc', '0xf2', '0xbe', '0xc2', '0xfe', '0xb2', '0xfe', '0xe', '0x0']
+[0030] [16250] HEX Only: 0xbe 0xbe 0xfe 0xce 0x2 0xfe 0xbc 0xbe 0xbe 0xcc 0xfe 0xb2 0xfe 0xbe 0xcc 0xfc 0xf2 0xbe 0xc2 0xfe 0xb2 0xfe 0xe 0x0
+[0030] [16250] Found 3 packet(s):
+[0030] [16250] Packet 1 (pos 0-2):
+[0030] [16250]   HEX: ['0xbe']
+[0030] [16250]   DEC: ['190']
+
+[0030] [16250] Packet 2 (pos 7-10):
+[0030] [16250]   HEX: ['0xbe', '0xcc']
+[0030] [16250]   DEC: ['190', '204']
+
+[0030] [16250] Packet 3 (pos 13-19):
+[0030] [16250]   HEX: ['0xcc', '0xfc', '0xf2', '0xbe', '0xc2']
+[0030] [16250]   DEC: ['204', '252', '242', '190', '194']
+
+[0031] [16250] RAW: b'\xfe'
+[0031] [16250] DEC: ['254']
+[0031] [16250] HEX: ['0xfe']
+[0031] [16250] HEX Only: 0xfe
+[0031] [16250] No complete packets found (0xBE...0xFE)
+[0032] [16250] RAW: b'\xbe\xbe\xfe\xce\x02\xfe\xbc\xbe\xbe\xcc\xfe\xb2\xfe\xbe\xcc\xfc\xf2\xbe\xc2\xfe\xb2\xfe\x0e\x00'
+[0032] [16250] DEC: ['190', '190', '254', '206', '2', '254', '188', '190', '190', '204', '254', '178', '254', '190', '204', '252', '242', '190', '194', '254', '178', '254', '14', '0']
+[0032] [16250] HEX: ['0xbe', '0xbe', '0xfe', '0xce', '0x2', '0xfe', '0xbc', '0xbe', '0xbe', '0xcc', '0xfe', '0xb2', '0xfe', '0xbe', '0xcc', '0xfc', '0xf2', '0xbe', '0xc2', '0xfe', '0xb2', '0xfe', '0xe', '0x0']
+[0032] [16250] HEX Only: 0xbe 0xbe 0xfe 0xce 0x2 0xfe 0xbc 0xbe 0xbe 0xcc 0xfe 0xb2 0xfe 0xbe 0xcc 0xfc 0xf2 0xbe 0xc2 0xfe 0xb2 0xfe 0xe 0x0
+[0032] [16250] Found 3 packet(s):
+[0032] [16250] Packet 1 (pos 0-2):
+[0032] [16250]   HEX: ['0xbe']
+[0032] [16250]   DEC: ['190']
+
+[0032] [16250] Packet 2 (pos 7-10):
+[0032] [16250]   HEX: ['0xbe', '0xcc']
+[0032] [16250]   DEC: ['190', '204']
+
+[0032] [16250] Packet 3 (pos 13-19):
+[0032] [16250]   HEX: ['0xcc', '0xfc', '0xf2', '0xbe', '0xc2']
+[0032] [16250]   DEC: ['204', '252', '242', '190', '194']
+
+[0033] [16250] RAW: b'\xfe'
+[0033] [16250] DEC: ['254']
+[0033] [16250] HEX: ['0xfe']
+[0033] [16250] HEX Only: 0xfe
+[0033] [16250] No complete packets found (0xBE...0xFE)
+[0034] [16250] RAW: b'\xbe\xbe\xfe\xce\x02\xfe\xbc\xbe\xbe\xcc\xfe\xb2\xfe\xbe\xcc\xfc\xf2\xbe\xc2\xfe\xb2\xfe\x0e\x00'
+[0034] [16250] DEC: ['190', '190', '254', '206', '2', '254', '188', '190', '190', '204', '254', '178', '254', '190', '204', '252', '242', '190', '194', '254', '178', '254', '14', '0']
+[0034] [16250] HEX: ['0xbe', '0xbe', '0xfe', '0xce', '0x2', '0xfe', '0xbc', '0xbe', '0xbe', '0xcc', '0xfe', '0xb2', '0xfe', '0xbe', '0xcc', '0xfc', '0xf2', '0xbe', '0xc2', '0xfe', '0xb2', '0xfe', '0xe', '0x0']
+[0034] [16250] HEX Only: 0xbe 0xbe 0xfe 0xce 0x2 0xfe 0xbc 0xbe 0xbe 0xcc 0xfe 0xb2 0xfe 0xbe 0xcc 0xfc 0xf2 0xbe 0xc2 0xfe 0xb2 0xfe 0xe 0x0
+[0034] [16250] Found 3 packet(s):
+[0034] [16250] Packet 1 (pos 0-2):
+[0034] [16250]   HEX: ['0xbe']
+[0034] [16250]   DEC: ['190']
+
+[0034] [16250] Packet 2 (pos 7-10):
+[0034] [16250]   HEX: ['0xbe', '0xcc']
+[0034] [16250]   DEC: ['190', '204']
+
+[0034] [16250] Packet 3 (pos 13-19):
+[0034] [16250]   HEX: ['0xcc', '0xfc', '0xf2', '0xbe', '0xc2']
+[0034] [16250]   DEC: ['204', '252', '242', '190', '194']
+
+[0035] [16250] RAW: b'\xfe'
+[0035] [16250] DEC: ['254']
+[0035] [16250] HEX: ['0xfe']
+[0035] [16250] HEX Only: 0xfe
+[0035] [16250] No complete packets found (0xBE...0xFE)
+[0036] [16250] RAW: b'\xbe\xbe\xfe\xce\x02\xfe\xbc\xbe\xbe\xcc\xfe\xb2\xfe\xbe\xcc\xfc\xf2\xbe\xc2\xfe\xb2\xfe\x0e\x00'
+[0036] [16250] DEC: ['190', '190', '254', '206', '2', '254', '188', '190', '190', '204', '254', '178', '254', '190', '204', '252', '242', '190', '194', '254', '178', '254', '14', '0']
+[0036] [16250] HEX: ['0xbe', '0xbe', '0xfe', '0xce', '0x2', '0xfe', '0xbc', '0xbe', '0xbe', '0xcc', '0xfe', '0xb2', '0xfe', '0xbe', '0xcc', '0xfc', '0xf2', '0xbe', '0xc2', '0xfe', '0xb2', '0xfe', '0xe', '0x0']
+[0036] [16250] HEX Only: 0xbe 0xbe 0xfe 0xce 0x2 0xfe 0xbc 0xbe 0xbe 0xcc 0xfe 0xb2 0xfe 0xbe 0xcc 0xfc 0xf2 0xbe 0xc2 0xfe 0xb2 0xfe 0xe 0x0
+[0036] [16250] Found 3 packet(s):
+[0036] [16250] Packet 1 (pos 0-2):
+[0036] [16250]   HEX: ['0xbe']
+[0036] [16250]   DEC: ['190']
+
+[0036] [16250] Packet 2 (pos 7-10):
+[0036] [16250]   HEX: ['0xbe', '0xcc']
+[0036] [16250]   DEC: ['190', '204']
+
+[0036] [16250] Packet 3 (pos 13-19):
+[0036] [16250]   HEX: ['0xcc', '0xfc', '0xf2', '0xbe', '0xc2']
+[0036] [16250]   DEC: ['204', '252', '242', '190', '194']
+
+[0037] [16250] RAW: b'\xfe'
+[0037] [16250] DEC: ['254']
+[0037] [16250] HEX: ['0xfe']
+[0037] [16250] HEX Only: 0xfe
+[0037] [16250] No complete packets found (0xBE...0xFE)
+[0038] [16250] RAW: b'\xbe\xbe\xfe\xce\x02\xfe\xbc\xbe\xbe\xcc\xfe\xb2\xfe\xbe\xcc\xfc\xf2\xbe\xc2\xfe\xb2\xfe\x0e\x00'
+[0038] [16250] DEC: ['190', '190', '254', '206', '2', '254', '188', '190', '190', '204', '254', '178', '254', '190', '204', '252', '242', '190', '194', '254', '178', '254', '14', '0']
+[0038] [16250] HEX: ['0xbe', '0xbe', '0xfe', '0xce', '0x2', '0xfe', '0xbc', '0xbe', '0xbe', '0xcc', '0xfe', '0xb2', '0xfe', '0xbe', '0xcc', '0xfc', '0xf2', '0xbe', '0xc2', '0xfe', '0xb2', '0xfe', '0xe', '0x0']
+[0038] [16250] HEX Only: 0xbe 0xbe 0xfe 0xce 0x2 0xfe 0xbc 0xbe 0xbe 0xcc 0xfe 0xb2 0xfe 0xbe 0xcc 0xfc 0xf2 0xbe 0xc2 0xfe 0xb2 0xfe 0xe 0x0
+[0038] [16250] Found 3 packet(s):
+[0038] [16250] Packet 1 (pos 0-2):
+[0038] [16250]   HEX: ['0xbe']
+[0038] [16250]   DEC: ['190']
+
+[0038] [16250] Packet 2 (pos 7-10):
+[0038] [16250]   HEX: ['0xbe', '0xcc']
+[0038] [16250]   DEC: ['190', '204']
+
+[0038] [16250] Packet 3 (pos 13-19):
+[0038] [16250]   HEX: ['0xcc', '0xfc', '0xf2', '0xbe', '0xc2']
+[0038] [16250]   DEC: ['204', '252', '242', '190', '194']
+
+[0039] [16250] RAW: b'\xfe'
+[0039] [16250] DEC: ['254']
+[0039] [16250] HEX: ['0xfe']
+[0039] [16250] HEX Only: 0xfe
+[0039] [16250] No complete packets found (0xBE...0xFE)
+[0040] [16250] RAW: b'\xbe\xbe\xfe\xce\x02\xfe\xbc\xbe\xbe\xcc\xfe\xb2\xfe\xbe\xcc\xfc\xf2\xbe\xc2\xfe\xb2\xfe\x0e\x00'
+[0040] [16250] DEC: ['190', '190', '254', '206', '2', '254', '188', '190', '190', '204', '254', '178', '254', '190', '204', '252', '242', '190', '194', '254', '178', '254', '14', '0']
+[0040] [16250] HEX: ['0xbe', '0xbe', '0xfe', '0xce', '0x2', '0xfe', '0xbc', '0xbe', '0xbe', '0xcc', '0xfe', '0xb2', '0xfe', '0xbe', '0xcc', '0xfc', '0xf2', '0xbe', '0xc2', '0xfe', '0xb2', '0xfe', '0xe', '0x0']
+[0040] [16250] HEX Only: 0xbe 0xbe 0xfe 0xce 0x2 0xfe 0xbc 0xbe 0xbe 0xcc 0xfe 0xb2 0xfe 0xbe 0xcc 0xfc 0xf2 0xbe 0xc2 0xfe 0xb2 0xfe 0xe 0x0
+[0040] [16250] Found 3 packet(s):
+[0040] [16250] Packet 1 (pos 0-2):
+[0040] [16250]   HEX: ['0xbe']
+[0040] [16250]   DEC: ['190']
+
+[0040] [16250] Packet 2 (pos 7-10):
+[0040] [16250]   HEX: ['0xbe', '0xcc']
+[0040] [16250]   DEC: ['190', '204']
+
+[0040] [16250] Packet 3 (pos 13-19):
+[0040] [16250]   HEX: ['0xcc', '0xfc', '0xf2', '0xbe', '0xc2']
+[0040] [16250]   DEC: ['204', '252', '242', '190', '194']
+
+[0041] [16250] RAW: b'\xfe'
+[0041] [16250] DEC: ['254']
+[0041] [16250] HEX: ['0xfe']
+[0041] [16250] HEX Only: 0xfe
+[0041] [16250] No complete packets found (0xBE...0xFE)
+[0042] [16250] RAW: b'\xbe\xbe\xfe\xce\x02\xfe\xbc\xbe\xbe\xcc\xfe\xb2\xfe\xbe\xcc\xfc\xf2\xbe\xc2\xfe\xb2\xfe\x0e\x00'
+[0042] [16250] DEC: ['190', '190', '254', '206', '2', '254', '188', '190', '190', '204', '254', '178', '254', '190', '204', '252', '242', '190', '194', '254', '178', '254', '14', '0']
+[0042] [16250] HEX: ['0xbe', '0xbe', '0xfe', '0xce', '0x2', '0xfe', '0xbc', '0xbe', '0xbe', '0xcc', '0xfe', '0xb2', '0xfe', '0xbe', '0xcc', '0xfc', '0xf2', '0xbe', '0xc2', '0xfe', '0xb2', '0xfe', '0xe', '0x0']
+[0042] [16250] HEX Only: 0xbe 0xbe 0xfe 0xce 0x2 0xfe 0xbc 0xbe 0xbe 0xcc 0xfe 0xb2 0xfe 0xbe 0xcc 0xfc 0xf2 0xbe 0xc2 0xfe 0xb2 0xfe 0xe 0x0
+[0042] [16250] Found 3 packet(s):
+[0042] [16250] Packet 1 (pos 0-2):
+[0042] [16250]   HEX: ['0xbe']
+[0042] [16250]   DEC: ['190']
+
+[0042] [16250] Packet 2 (pos 7-10):
+[0042] [16250]   HEX: ['0xbe', '0xcc']
+[0042] [16250]   DEC: ['190', '204']
+
+[0042] [16250] Packet 3 (pos 13-19):
+[0042] [16250]   HEX: ['0xcc', '0xfc', '0xf2', '0xbe', '0xc2']
+[0042] [16250]   DEC: ['204', '252', '242', '190', '194']
+
+[0043] [16250] RAW: b'\xfe'
+[0043] [16250] DEC: ['254']
+[0043] [16250] HEX: ['0xfe']
+[0043] [16250] HEX Only: 0xfe
+[0043] [16250] No complete packets found (0xBE...0xFE)
+[0044] [16250] RAW: b'\xbe\xbe\xfe\xce\x02\xfe\xbc\xbe\xbe\xcc\xfe\xb2\xfe\xbe\xcc\xfc\xf2\xbe\xc2\xfe\xb2\xfe\x0e\x00'
+[0044] [16250] DEC: ['190', '190', '254', '206', '2', '254', '188', '190', '190', '204', '254', '178', '254', '190', '204', '252', '242', '190', '194', '254', '178', '254', '14', '0']
+[0044] [16250] HEX: ['0xbe', '0xbe', '0xfe', '0xce', '0x2', '0xfe', '0xbc', '0xbe', '0xbe', '0xcc', '0xfe', '0xb2', '0xfe', '0xbe', '0xcc', '0xfc', '0xf2', '0xbe', '0xc2', '0xfe', '0xb2', '0xfe', '0xe', '0x0']
+[0044] [16250] HEX Only: 0xbe 0xbe 0xfe 0xce 0x2 0xfe 0xbc 0xbe 0xbe 0xcc 0xfe 0xb2 0xfe 0xbe 0xcc 0xfc 0xf2 0xbe 0xc2 0xfe 0xb2 0xfe 0xe 0x0
+[0044] [16250] Found 3 packet(s):
+[0044] [16250] Packet 1 (pos 0-2):
+[0044] [16250]   HEX: ['0xbe']
+[0044] [16250]   DEC: ['190']
+
+[0044] [16250] Packet 2 (pos 7-10):
+[0044] [16250]   HEX: ['0xbe', '0xcc']
+[0044] [16250]   DEC: ['190', '204']
+
+[0044] [16250] Packet 3 (pos 13-19):
+[0044] [16250]   HEX: ['0xcc', '0xfc', '0xf2', '0xbe', '0xc2']
+[0044] [16250]   DEC: ['204', '252', '242', '190', '194']
+
+[0045] [16250] RAW: b'\xfe'
+[0045] [16250] DEC: ['254']
+[0045] [16250] HEX: ['0xfe']
+[0045] [16250] HEX Only: 0xfe
+[0045] [16250] No complete packets found (0xBE...0xFE)
+[0046] [16250] RAW: b'\xbe\xbe\xfe\xce\x02\xfe\xbc\xbe\xbe\xcc\xfe\xb2\xfe\xbe\xcc\xfc\xf2\xbe\xc2\xfe\xb2\xfe\x0e\x00'
+[0046] [16250] DEC: ['190', '190', '254', '206', '2', '254', '188', '190', '190', '204', '254', '178', '254', '190', '204', '252', '242', '190', '194', '254', '178', '254', '14', '0']
+[0046] [16250] HEX: ['0xbe', '0xbe', '0xfe', '0xce', '0x2', '0xfe', '0xbc', '0xbe', '0xbe', '0xcc', '0xfe', '0xb2', '0xfe', '0xbe', '0xcc', '0xfc', '0xf2', '0xbe', '0xc2', '0xfe', '0xb2', '0xfe', '0xe', '0x0']
+[0046] [16250] HEX Only: 0xbe 0xbe 0xfe 0xce 0x2 0xfe 0xbc 0xbe 0xbe 0xcc 0xfe 0xb2 0xfe 0xbe 0xcc 0xfc 0xf2 0xbe 0xc2 0xfe 0xb2 0xfe 0xe 0x0
+[0046] [16250] Found 3 packet(s):
+[0046] [16250] Packet 1 (pos 0-2):
+[0046] [16250]   HEX: ['0xbe']
+[0046] [16250]   DEC: ['190']
+
+[0046] [16250] Packet 2 (pos 7-10):
+[0046] [16250]   HEX: ['0xbe', '0xcc']
+[0046] [16250]   DEC: ['190', '204']
+
+[0046] [16250] Packet 3 (pos 13-19):
+[0046] [16250]   HEX: ['0xcc', '0xfc', '0xf2', '0xbe', '0xc2']
+[0046] [16250]   DEC: ['204', '252', '242', '190', '194']
+
+[0047] [16250] RAW: b'\xfe'
+[0047] [16250] DEC: ['254']
+[0047] [16250] HEX: ['0xfe']
+[0047] [16250] HEX Only: 0xfe
+[0047] [16250] No complete packets found (0xBE...0xFE)
+[0048] [16250] RAW: b'\xbe\xbe\xfe\xce\x02\xfe\xbc\xbe\xbe\xcc\xfe\xb2\xfe\xbe\xcc\xfc\xf2\xbe\xc2\xfe\xb2\xfe\x0e\x00'
+[0048] [16250] DEC: ['190', '190', '254', '206', '2', '254', '188', '190', '190', '204', '254', '178', '254', '190', '204', '252', '242', '190', '194', '254', '178', '254', '14', '0']
+[0048] [16250] HEX: ['0xbe', '0xbe', '0xfe', '0xce', '0x2', '0xfe', '0xbc', '0xbe', '0xbe', '0xcc', '0xfe', '0xb2', '0xfe', '0xbe', '0xcc', '0xfc', '0xf2', '0xbe', '0xc2', '0xfe', '0xb2', '0xfe', '0xe', '0x0']
+[0048] [16250] HEX Only: 0xbe 0xbe 0xfe 0xce 0x2 0xfe 0xbc 0xbe 0xbe 0xcc 0xfe 0xb2 0xfe 0xbe 0xcc 0xfc 0xf2 0xbe 0xc2 0xfe 0xb2 0xfe 0xe 0x0
+[0048] [16250] Found 3 packet(s):
+[0048] [16250] Packet 1 (pos 0-2):
+[0048] [16250]   HEX: ['0xbe']
+[0048] [16250]   DEC: ['190']
+
+[0048] [16250] Packet 2 (pos 7-10):
+[0048] [16250]   HEX: ['0xbe', '0xcc']
+[0048] [16250]   DEC: ['190', '204']
+
+[0048] [16250] Packet 3 (pos 13-19):
+[0048] [16250]   HEX: ['0xcc', '0xfc', '0xf2', '0xbe', '0xc2']
+[0048] [16250]   DEC: ['204', '252', '242', '190', '194']
+
+[0049] [16250] RAW: b'\xfe'
+[0049] [16250] DEC: ['254']
+[0049] [16250] HEX: ['0xfe']
+[0049] [16250] HEX Only: 0xfe
+[0049] [16250] No complete packets found (0xBE...0xFE)
+[0050] [16250] RAW: b'\xbe\xbe\xfe\xce\x02\xfe\xbc\xbe\xbe\xcc\xfe\xb2\xfe\xbe\xcc\xfc\xf2\xbe\xc2\x0e\x0e\xf2\x0e\x0c\x00'
+[0050] [16250] DEC: ['190', '190', '254', '206', '2', '254', '188', '190', '190', '204', '254', '178', '254', '190', '204', '252', '242', '190', '194', '14', '14', '242', '14', '12', '0']
+[0050] [16250] HEX: ['0xbe', '0xbe', '0xfe', '0xce', '0x2', '0xfe', '0xbc', '0xbe', '0xbe', '0xcc', '0xfe', '0xb2', '0xfe', '0xbe', '0xcc', '0xfc', '0xf2', '0xbe', '0xc2', '0xe', '0xe', '0xf2', '0xe', '0xc', '0x0']
+[0050] [16250] HEX Only: 0xbe 0xbe 0xfe 0xce 0x2 0xfe 0xbc 0xbe 0xbe 0xcc 0xfe 0xb2 0xfe 0xbe 0xcc 0xfc 0xf2 0xbe 0xc2 0xe 0xe 0xf2 0xe 0xc 0x0
+[0050] [16250] Found 2 packet(s):
+[0050] [16250] Packet 1 (pos 0-2):
+[0050] [16250]   HEX: ['0xbe']
+[0050] [16250]   DEC: ['190']
+
+[0050] [16250] Packet 2 (pos 7-10):
+[0050] [16250]   HEX: ['0xbe', '0xcc']
+[0050] [16250]   DEC: ['190', '204']
+
+[0051] [16250] RAW: b'\x00'
+[0051] [16250] DEC: ['0']
+[0051] [16250] HEX: ['0x0']
+[0051] [16250] HEX Only: 0x0
+[0051] [16250] No complete packets found (0xBE...0xFE)
+[0052] [16250] RAW: b'\x00'
+[0052] [16250] DEC: ['0']
+[0052] [16250] HEX: ['0x0']
+[0052] [16250] HEX Only: 0x0
+[0052] [16250] No complete packets found (0xBE...0xFE)
+[0053] [16250] RAW: b'\x00\x00\x00\x00'
+[0053] [16250] DEC: ['0', '0', '0', '0']
+[0053] [16250] HEX: ['0x0', '0x0', '0x0', '0x0']
+[0053] [16250] HEX Only: 0x0 0x0 0x0 0x0
+[0053] [16250] No complete packets found (0xBE...0xFE)
+[0054] [16250] RAW: b'\x00'
+[0054] [16250] DEC: ['0']
+[0054] [16250] HEX: ['0x0']
+[0054] [16250] HEX Only: 0x0
+[0054] [16250] No complete packets found (0xBE...0xFE)
+[0055] [16250] RAW: b'\x00'
+[0055] [16250] DEC: ['0']
+[0055] [16250] HEX: ['0x0']
+[0055] [16250] HEX Only: 0x0
+[0055] [16250] No complete packets found (0xBE...0xFE)
+[0056] [16250] RAW: b'\x00'
+[0056] [16250] DEC: ['0']
+[0056] [16250] HEX: ['0x0']
+[0056] [16250] HEX Only: 0x0
+[0056] [16250] No complete packets found (0xBE...0xFE)
+[0057] [16250] RAW: b'\x00\xfe\xbe\xbe\xfe\xce\x02\xfe\xbc\xbe\xbe\xcc\xfe\xb2\xfe\xbe\xcc\xfc\xf2\xbeBr\x0c\xf2~\x0e\x00'
+[0057] [16250] DEC: ['0', '254', '190', '190', '254', '206', '2', '254', '188', '190', '190', '204', '254', '178', '254', '190', '204', '252', '242', '190', '66', '114', '12', '242', '126', '14', '0']
+[0057] [16250] HEX: ['0x0', '0xfe', '0xbe', '0xbe', '0xfe', '0xce', '0x2', '0xfe', '0xbc', '0xbe', '0xbe', '0xcc', '0xfe', '0xb2', '0xfe', '0xbe', '0xcc', '0xfc', '0xf2', '0xbe', '0x42', '0x72', '0xc', '0xf2', '0x7e', '0xe', '0x0']
+[0057] [16250] HEX Only: 0x0 0xfe 0xbe 0xbe 0xfe 0xce 0x2 0xfe 0xbc 0xbe 0xbe 0xcc 0xfe 0xb2 0xfe 0xbe 0xcc 0xfc 0xf2 0xbe 0x42 0x72 0xc 0xf2 0x7e 0xe 0x0
+[0057] [16250] Found 2 packet(s):
+[0057] [16250] Packet 1 (pos 2-4):
+[0057] [16250]   HEX: ['0xbe']
+[0057] [16250]   DEC: ['190']
+
+[0057] [16250] Packet 2 (pos 9-12):
+[0057] [16250]   HEX: ['0xbe', '0xcc']
+[0057] [16250]   DEC: ['190', '204']
+
+[0058] [16250] RAW: b'\x00'
+[0058] [16250] DEC: ['0']
+[0058] [16250] HEX: ['0x0']
+[0058] [16250] HEX Only: 0x0
+[0058] [16250] No complete packets found (0xBE...0xFE)
+[0059] [16250] RAW: b'\x00'
+[0059] [16250] DEC: ['0']
+[0059] [16250] HEX: ['0x0']
+[0059] [16250] HEX Only: 0x0
+[0059] [16250] No complete packets found (0xBE...0xFE)
+[0060] [16250] RAW: b'\x00'
+[0060] [16250] DEC: ['0']
+[0060] [16250] HEX: ['0x0']
+[0060] [16250] HEX Only: 0x0
+[0060] [16250] No complete packets found (0xBE...0xFE)
+[0061] [16250] RAW: b'\x00'
+[0061] [16250] DEC: ['0']
+[0061] [16250] HEX: ['0x0']
+[0061] [16250] HEX Only: 0x0
+[0061] [16250] No complete packets found (0xBE...0xFE)
+[0062] [16250] RAW: b'\xfe'
+[0062] [16250] DEC: ['254']
+[0062] [16250] HEX: ['0xfe']
+[0062] [16250] HEX Only: 0xfe
+[0062] [16250] No complete packets found (0xBE...0xFE)
+[0063] [16250] RAW: b'\xbe\xbe\xfe\xce\x02\xfe\xbc\xbe\xbe\xcc\xfe\xb2\xfe\xbe\xcc\xfc\xf2\xbeB\x8e\x82\xf2\x82\x00'
+[0063] [16250] DEC: ['190', '190', '254', '206', '2', '254', '188', '190', '190', '204', '254', '178', '254', '190', '204', '252', '242', '190', '66', '142', '130', '242', '130', '0']
+[0063] [16250] HEX: ['0xbe', '0xbe', '0xfe', '0xce', '0x2', '0xfe', '0xbc', '0xbe', '0xbe', '0xcc', '0xfe', '0xb2', '0xfe', '0xbe', '0xcc', '0xfc', '0xf2', '0xbe', '0x42', '0x8e', '0x82', '0xf2', '0x82', '0x0']
+[0063] [16250] HEX Only: 0xbe 0xbe 0xfe 0xce 0x2 0xfe 0xbc 0xbe 0xbe 0xcc 0xfe 0xb2 0xfe 0xbe 0xcc 0xfc 0xf2 0xbe 0x42 0x8e 0x82 0xf2 0x82 0x0
+[0063] [16250] Found 2 packet(s):
+[0063] [16250] Packet 1 (pos 0-2):
+[0063] [16250]   HEX: ['0xbe']
+[0063] [16250]   DEC: ['190']
+
+[0063] [16250] Packet 2 (pos 7-10):
+[0063] [16250]   HEX: ['0xbe', '0xcc']
+[0063] [16250]   DEC: ['190', '204']
+
+[0064] [16250] RAW: b'\x00'
+[0064] [16250] DEC: ['0']
+[0064] [16250] HEX: ['0x0']
+[0064] [16250] HEX Only: 0x0
+[0064] [16250] No complete packets found (0xBE...0xFE)
+[0065] [16250] RAW: b'\x00'
+[0065] [16250] DEC: ['0']
+[0065] [16250] HEX: ['0x0']
+[0065] [16250] HEX Only: 0x0
+[0065] [16250] No complete packets found (0xBE...0xFE)
+[0066] [16250] RAW: b'\x00'
+[0066] [16250] DEC: ['0']
+[0066] [16250] HEX: ['0x0']
+[0066] [16250] HEX Only: 0x0
+[0066] [16250] No complete packets found (0xBE...0xFE)
+[0067] [16250] RAW: b'\x00'
+[0067] [16250] DEC: ['0']
+[0067] [16250] HEX: ['0x0']
+[0067] [16250] HEX Only: 0x0
+[0067] [16250] No complete packets found (0xBE...0xFE)
+[0068] [16250] RAW: b'\x00'
+[0068] [16250] DEC: ['0']
+[0068] [16250] HEX: ['0x0']
+[0068] [16250] HEX Only: 0x0
+[0068] [16250] No complete packets found (0xBE...0xFE)
+[0069] [16250] RAW: b'\x00'
+[0069] [16250] DEC: ['0']
+[0069] [16250] HEX: ['0x0']
+[0069] [16250] HEX Only: 0x0
+[0069] [16250] No complete packets found (0xBE...0xFE)
+[0070] [16250] RAW: b'\xfe'
+[0070] [16250] DEC: ['254']
+[0070] [16250] HEX: ['0xfe']
+[0070] [16250] HEX Only: 0xfe
+[0070] [16250] No complete packets found (0xBE...0xFE)
+[0071] [16250] RAW: b'\xbe\xbe\xfe\xce\x02\xfe\xbc\xbe\xbe\xcc\xfe\xb2\xfe\xbe\xcc\xfc\xf2\xbeB\xce\x82\xf2\xc2\x00'
+[0071] [16250] DEC: ['190', '190', '254', '206', '2', '254', '188', '190', '190', '204', '254', '178', '254', '190', '204', '252', '242', '190', '66', '206', '130', '242', '194', '0']
+[0071] [16250] HEX: ['0xbe', '0xbe', '0xfe', '0xce', '0x2', '0xfe', '0xbc', '0xbe', '0xbe', '0xcc', '0xfe', '0xb2', '0xfe', '0xbe', '0xcc', '0xfc', '0xf2', '0xbe', '0x42', '0xce', '0x82', '0xf2', '0xc2', '0x0']
+[0071] [16250] HEX Only: 0xbe 0xbe 0xfe 0xce 0x2 0xfe 0xbc 0xbe 0xbe 0xcc 0xfe 0xb2 0xfe 0xbe 0xcc 0xfc 0xf2 0xbe 0x42 0xce 0x82 0xf2 0xc2 0x0
+[0071] [16250] Found 2 packet(s):
+[0071] [16250] Packet 1 (pos 0-2):
+[0071] [16250]   HEX: ['0xbe']
+[0071] [16250]   DEC: ['190']
+
+[0071] [16250] Packet 2 (pos 7-10):
+[0071] [16250]   HEX: ['0xbe', '0xcc']
+[0071] [16250]   DEC: ['190', '204']
+
+[0072] [16250] RAW: b'\x00'
+[0072] [16250] DEC: ['0']
+[0072] [16250] HEX: ['0x0']
+[0072] [16250] HEX Only: 0x0
+[0072] [16250] No complete packets found (0xBE...0xFE)
+[0073] [16250] RAW: b'\x00'
+[0073] [16250] DEC: ['0']
+[0073] [16250] HEX: ['0x0']
+[0073] [16250] HEX Only: 0x0
+[0073] [16250] No complete packets found (0xBE...0xFE)
+[0074] [16250] RAW: b'\xfe'
+[0074] [16250] DEC: ['254']
+[0074] [16250] HEX: ['0xfe']
+[0074] [16250] HEX Only: 0xfe
+[0074] [16250] No complete packets found (0xBE...0xFE)
+[0075] [16250] RAW: b'\xbe\xbe\xfe\xce\x02\xfe\xbc\xbe\xbe\xcc\xfe\xb2\xfe\xbe\xcc\xfc\xf2\xbeB\xce\x82\xf2\xc2\x00'
+[0075] [16250] DEC: ['190', '190', '254', '206', '2', '254', '188', '190', '190', '204', '254', '178', '254', '190', '204', '252', '242', '190', '66', '206', '130', '242', '194', '0']
+[0075] [16250] HEX: ['0xbe', '0xbe', '0xfe', '0xce', '0x2', '0xfe', '0xbc', '0xbe', '0xbe', '0xcc', '0xfe', '0xb2', '0xfe', '0xbe', '0xcc', '0xfc', '0xf2', '0xbe', '0x42', '0xce', '0x82', '0xf2', '0xc2', '0x0']
+[0075] [16250] HEX Only: 0xbe 0xbe 0xfe 0xce 0x2 0xfe 0xbc 0xbe 0xbe 0xcc 0xfe 0xb2 0xfe 0xbe 0xcc 0xfc 0xf2 0xbe 0x42 0xce 0x82 0xf2 0xc2 0x0
+[0075] [16250] Found 2 packet(s):
+[0075] [16250] Packet 1 (pos 0-2):
+[0075] [16250]   HEX: ['0xbe']
+[0075] [16250]   DEC: ['190']
+
+[0075] [16250] Packet 2 (pos 7-10):
+[0075] [16250]   HEX: ['0xbe', '0xcc']
+[0075] [16250]   DEC: ['190', '204']
+
+[0076] [16250] RAW: b'\x00'
+[0076] [16250] DEC: ['0']
+[0076] [16250] HEX: ['0x0']
+[0076] [16250] HEX Only: 0x0
+[0076] [16250] No complete packets found (0xBE...0xFE)
+[0077] [16250] RAW: b'\x00'
+[0077] [16250] DEC: ['0']
+[0077] [16250] HEX: ['0x0']
+[0077] [16250] HEX Only: 0x0
+[0077] [16250] No complete packets found (0xBE...0xFE)
+[0078] [16250] RAW: b'\xfe'
+[0078] [16250] DEC: ['254']
+[0078] [16250] HEX: ['0xfe']
+[0078] [16250] HEX Only: 0xfe
+[0078] [16250] No complete packets found (0xBE...0xFE)
+[0079] [16250] RAW: b'\xbe\xbe\xfe\xce\x02\xfe\xbc\xbe\xbe\xcc\xfe\xb2\xfe\xbe\xcc\xfc\xf2\xbeB\xf2\x82\xf2\xfe\x00'
+[0079] [16250] DEC: ['190', '190', '254', '206', '2', '254', '188', '190', '190', '204', '254', '178', '254', '190', '204', '252', '242', '190', '66', '242', '130', '242', '254', '0']
+[0079] [16250] HEX: ['0xbe', '0xbe', '0xfe', '0xce', '0x2', '0xfe', '0xbc', '0xbe', '0xbe', '0xcc', '0xfe', '0xb2', '0xfe', '0xbe', '0xcc', '0xfc', '0xf2', '0xbe', '0x42', '0xf2', '0x82', '0xf2', '0xfe', '0x0']
+[0079] [16250] HEX Only: 0xbe 0xbe 0xfe 0xce 0x2 0xfe 0xbc 0xbe 0xbe 0xcc 0xfe 0xb2 0xfe 0xbe 0xcc 0xfc 0xf2 0xbe 0x42 0xf2 0x82 0xf2 0xfe 0x0
+[0079] [16250] Found 3 packet(s):
+[0079] [16250] Packet 1 (pos 0-2):
+[0079] [16250]   HEX: ['0xbe']
+[0079] [16250]   DEC: ['190']
+
+[0079] [16250] Packet 2 (pos 7-10):
+[0079] [16250]   HEX: ['0xbe', '0xcc']
+[0079] [16250]   DEC: ['190', '204']
+
+[0079] [16250] Packet 3 (pos 13-22):
+[0079] [16250]   HEX: ['0xcc', '0xfc', '0xf2', '0xbe', '0x42', '0xf2', '0x82', '0xf2']
+[0079] [16250]   DEC: ['204', '252', '242', '190', '66', '242', '130', '242']
+
+[0080] [16250] RAW: b'\x00'
+[0080] [16250] DEC: ['0']
+[0080] [16250] HEX: ['0x0']
+[0080] [16250] HEX Only: 0x0
+[0080] [16250] No complete packets found (0xBE...0xFE)
+[0081] [16250] RAW: b'\x00'
+[0081] [16250] DEC: ['0']
+[0081] [16250] HEX: ['0x0']
+[0081] [16250] HEX Only: 0x0
+[0081] [16250] No complete packets found (0xBE...0xFE)
+[0082] [16250] RAW: b'\xfe'
+[0082] [16250] DEC: ['254']
+[0082] [16250] HEX: ['0xfe']
+[0082] [16250] HEX Only: 0xfe
+[0082] [16250] No complete packets found (0xBE...0xFE)
+[0083] [16250] RAW: b'\xbe\xbe\xfe\xce\x02\xfe\xbc\xbe\xbe\xcc\xfe\xb2\xfe\xbe\xcc\xfc\xf2\xbeB\xc2\x82\xf2\xce\x00'
+[0083] [16250] DEC: ['190', '190', '254', '206', '2', '254', '188', '190', '190', '204', '254', '178', '254', '190', '204', '252', '242', '190', '66', '194', '130', '242', '206', '0']
+[0083] [16250] HEX: ['0xbe', '0xbe', '0xfe', '0xce', '0x2', '0xfe', '0xbc', '0xbe', '0xbe', '0xcc', '0xfe', '0xb2', '0xfe', '0xbe', '0xcc', '0xfc', '0xf2', '0xbe', '0x42', '0xc2', '0x82', '0xf2', '0xce', '0x0']
+[0083] [16250] HEX Only: 0xbe 0xbe 0xfe 0xce 0x2 0xfe 0xbc 0xbe 0xbe 0xcc 0xfe 0xb2 0xfe 0xbe 0xcc 0xfc 0xf2 0xbe 0x42 0xc2 0x82 0xf2 0xce 0x0
+[0083] [16250] Found 2 packet(s):
+[0083] [16250] Packet 1 (pos 0-2):
+[0083] [16250]   HEX: ['0xbe']
+[0083] [16250]   DEC: ['190']
+
+[0083] [16250] Packet 2 (pos 7-10):
+[0083] [16250]   HEX: ['0xbe', '0xcc']
+[0083] [16250]   DEC: ['190', '204']
+
+[0084] [16250] RAW: b'\x00'
+[0084] [16250] DEC: ['0']
+[0084] [16250] HEX: ['0x0']
+[0084] [16250] HEX Only: 0x0
+[0084] [16250] No complete packets found (0xBE...0xFE)
+[0085] [16250] RAW: b'\x00'
+[0085] [16250] DEC: ['0']
+[0085] [16250] HEX: ['0x0']
+[0085] [16250] HEX Only: 0x0
+[0085] [16250] No complete packets found (0xBE...0xFE)
+[0086] [16250] RAW: b'\x00'
+[0086] [16250] DEC: ['0']
+[0086] [16250] HEX: ['0x0']
+[0086] [16250] HEX Only: 0x0
+[0086] [16250] No complete packets found (0xBE...0xFE)
+[0087] [16250] RAW: b'\xfe\xbe\xbe\xfe\xce\x02\xfe\xbc\xbe\xbe\xcc\xfe\xb2\xfe\xbe\xcc\xfc\xf2\xbec\xce\x82\xf2\xc2\x00'
+[0087] [16250] DEC: ['254', '190', '190', '254', '206', '2', '254', '188', '190', '190', '204', '254', '178', '254', '190', '204', '252', '242', '190', '99', '206', '130', '242', '194', '0']
+[0087] [16250] HEX: ['0xfe', '0xbe', '0xbe', '0xfe', '0xce', '0x2', '0xfe', '0xbc', '0xbe', '0xbe', '0xcc', '0xfe', '0xb2', '0xfe', '0xbe', '0xcc', '0xfc', '0xf2', '0xbe', '0x63', '0xce', '0x82', '0xf2', '0xc2', '0x0']
+[0087] [16250] HEX Only: 0xfe 0xbe 0xbe 0xfe 0xce 0x2 0xfe 0xbc 0xbe 0xbe 0xcc 0xfe 0xb2 0xfe 0xbe 0xcc 0xfc 0xf2 0xbe 0x63 0xce 0x82 0xf2 0xc2 0x0
+[0087] [16250] Found 2 packet(s):
+[0087] [16250] Packet 1 (pos 1-3):
+[0087] [16250]   HEX: ['0xbe']
+[0087] [16250]   DEC: ['190']
+
+[0087] [16250] Packet 2 (pos 8-11):
+[0087] [16250]   HEX: ['0xbe', '0xcc']
+[0087] [16250]   DEC: ['190', '204']
+
+[0088] [16250] RAW: b'\x00'
+[0088] [16250] DEC: ['0']
+[0088] [16250] HEX: ['0x0']
+[0088] [16250] HEX Only: 0x0
+[0088] [16250] No complete packets found (0xBE...0xFE)
+[0089] [16250] RAW: b'\x00'
+[0089] [16250] DEC: ['0']
+[0089] [16250] HEX: ['0x0']
+[0089] [16250] HEX Only: 0x0
+[0089] [16250] No complete packets found (0xBE...0xFE)
+[0090] [16250] RAW: b'\x00'
+[0090] [16250] DEC: ['0']
+[0090] [16250] HEX: ['0x0']
+[0090] [16250] HEX Only: 0x0
+[0090] [16250] No complete packets found (0xBE...0xFE)
+[0091] [16250] RAW: b'\xfe'
+[0091] [16250] DEC: ['254']
+[0091] [16250] HEX: ['0xfe']
+[0091] [16250] HEX Only: 0xfe
+[0091] [16250] No complete packets found (0xBE...0xFE)
+[0092] [16250] RAW: b'\xbe\xbe\xfe\xce\x02\xfe\xbc\xbe\xbe\xcc\xfe\xb2\xfe\xbe\xcc\xfc\xf2\xbeB\xc2\x82\xf2\xce\x00'
+[0092] [16250] DEC: ['190', '190', '254', '206', '2', '254', '188', '190', '190', '204', '254', '178', '254', '190', '204', '252', '242', '190', '66', '194', '130', '242', '206', '0']
+[0092] [16250] HEX: ['0xbe', '0xbe', '0xfe', '0xce', '0x2', '0xfe', '0xbc', '0xbe', '0xbe', '0xcc', '0xfe', '0xb2', '0xfe', '0xbe', '0xcc', '0xfc', '0xf2', '0xbe', '0x42', '0xc2', '0x82', '0xf2', '0xce', '0x0']
+[0092] [16250] HEX Only: 0xbe 0xbe 0xfe 0xce 0x2 0xfe 0xbc 0xbe 0xbe 0xcc 0xfe 0xb2 0xfe 0xbe 0xcc 0xfc 0xf2 0xbe 0x42 0xc2 0x82 0xf2 0xce 0x0
+[0092] [16250] Found 2 packet(s):
+[0092] [16250] Packet 1 (pos 0-2):
+[0092] [16250]   HEX: ['0xbe']
+[0092] [16250]   DEC: ['190']
+
+[0092] [16250] Packet 2 (pos 7-10):
+[0092] [16250]   HEX: ['0xbe', '0xcc']
+[0092] [16250]   DEC: ['190', '204']
+
+[0093] [16250] RAW: b'\x00'
+[0093] [16250] DEC: ['0']
+[0093] [16250] HEX: ['0x0']
+[0093] [16250] HEX Only: 0x0
+[0093] [16250] No complete packets found (0xBE...0xFE)
+[0094] [16250] RAW: b'\xfe'
+[0094] [16250] DEC: ['254']
+[0094] [16250] HEX: ['0xfe']
+[0094] [16250] HEX Only: 0xfe
+[0094] [16250] No complete packets found (0xBE...0xFE)
+[0095] [16250] RAW: b'\xbe\xbe\xfe\xce\x02\xfe\xbc\xbe\xbe\xcc\xfe\xb2\xfe\xbe\xcc\xfc\xf2\xbeBN\x0e\xf2B\x0c\x00'
+[0095] [16250] DEC: ['190', '190', '254', '206', '2', '254', '188', '190', '190', '204', '254', '178', '254', '190', '204', '252', '242', '190', '66', '78', '14', '242', '66', '12', '0']
+[0095] [16250] HEX: ['0xbe', '0xbe', '0xfe', '0xce', '0x2', '0xfe', '0xbc', '0xbe', '0xbe', '0xcc', '0xfe', '0xb2', '0xfe', '0xbe', '0xcc', '0xfc', '0xf2', '0xbe', '0x42', '0x4e', '0xe', '0xf2', '0x42', '0xc', '0x0']
+[0095] [16250] HEX Only: 0xbe 0xbe 0xfe 0xce 0x2 0xfe 0xbc 0xbe 0xbe 0xcc 0xfe 0xb2 0xfe 0xbe 0xcc 0xfc 0xf2 0xbe 0x42 0x4e 0xe 0xf2 0x42 0xc 0x0
+[0095] [16250] Found 2 packet(s):
+[0095] [16250] Packet 1 (pos 0-2):
+[0095] [16250]   HEX: ['0xbe']
+[0095] [16250]   DEC: ['190']
+
+[0095] [16250] Packet 2 (pos 7-10):
+[0095] [16250]   HEX: ['0xbe', '0xcc']
+[0095] [16250]   DEC: ['190', '204']
+
+[0096] [16250] RAW: b'\x00'
+[0096] [16250] DEC: ['0']
+[0096] [16250] HEX: ['0x0']
+[0096] [16250] HEX Only: 0x0
+[0096] [16250] No complete packets found (0xBE...0xFE)
+[0097] [16250] RAW: b'\x00'
+[0097] [16250] DEC: ['0']
+[0097] [16250] HEX: ['0x0']
+[0097] [16250] HEX Only: 0x0
+[0097] [16250] No complete packets found (0xBE...0xFE)
+
