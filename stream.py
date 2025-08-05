@@ -41,20 +41,20 @@ def generate_acceleration_parameters(acceleration_level=0):
     Based on the log analysis, these parameters change during acceleration
     """
     if acceleration_level == 0:
-        # Idle/standby parameters
-        return [0xB2, 0xFE, 0x0E]
+        # Idle/standby parameters (from line 4 in logs)
+        return [0xC2, 0xFE, 0xB2, 0xFE, 0x0E]
     elif acceleration_level <= 25:
-        # Low acceleration
-        return [0x72, 0x0C, 0x7E]
+        # Low acceleration (from line 50 in logs)
+        return [0xC2, 0xFE, 0xB2, 0xFE, 0x0E]
     elif acceleration_level <= 50:
-        # Medium acceleration
-        return [0x8E, 0x82, 0x82]
+        # Medium acceleration (from line 63 in logs)
+        return [0x42, 0x8E, 0x82, 0xF2, 0x82]
     elif acceleration_level <= 75:
-        # High acceleration
-        return [0xCE, 0x82, 0xC2]
+        # High acceleration (from line 71 in logs)
+        return [0x42, 0xCE, 0x82, 0xF2, 0xC2]
     else:
-        # Maximum acceleration
-        return [0xF2, 0x82, 0xFE]
+        # Maximum acceleration (from line 79 in logs)
+        return [0x42, 0xF2, 0x82, 0xF2, 0xFE]
 
 def create_complete_packet_stream(acceleration_level=0):
     """
@@ -64,12 +64,12 @@ def create_complete_packet_stream(acceleration_level=0):
     # Generate acceleration parameters
     accel_params = generate_acceleration_parameters(acceleration_level)
     
-    # Complete packet stream from log analysis
+    # Complete packet stream from log analysis (line 4 pattern)
     # Pattern: 0xBE 0xBE 0xFE 0xCE 0x02 0xFE 0xBC 0xBE 0xBE 0xCC 0xFE 0xB2 0xFE 0xBE 0xCC 0xFC 0xF2 0xBE [ACCEL_PARAMS] 0x00
     packet_stream = [
         0xBE, 0xBE, 0xFE, 0xCE, 0x02, 0xFE, 0xBC, 0xBE, 0xBE, 0xCC, 0xFE, 0xB2, 0xFE, 
-        0xBE, 0xCC, 0xFC, 0xF2, 0xBE, 0x42,  # Fixed acceleration command header
-        accel_params[0], 0xF2, accel_params[1], 0x00  # Variable acceleration parameters
+        0xBE, 0xCC, 0xFC, 0xF2, 0xBE,  # Fixed acceleration command header
+        accel_params[0], 0xFE, accel_params[1], 0xFE, accel_params[2], 0x00  # Variable acceleration parameters
     ]
     
     return bytes(packet_stream)
@@ -222,19 +222,20 @@ def show_packet_analysis():
     print("  [12]    0xFE               - End marker")
     print("  [13-16] 0xBE 0xCC 0xFC 0xF2 - Acceleration command header")
     print("  [17]    0xBE               - Start marker")
-    print("  [18]    0x42               - Acceleration command")
-    print("  [19]    [VAR]              - Acceleration parameter 1")
-    print("  [20]    0xF2               - Separator")
-    print("  [21]    [VAR]              - Acceleration parameter 2")
-    print("  [22]    0x00               - End marker")
+    print("  [18]    [VAR]              - Acceleration command")
+    print("  [19]    0xFE               - Separator")
+    print("  [20]    [VAR]              - Acceleration parameter 1")
+    print("  [21]    0xFE               - Separator")
+    print("  [22]    [VAR]              - Acceleration parameter 2")
+    print("  [23]    0x00               - End marker")
     print()
     
-    print("Acceleration parameter mapping:")
-    print("  0% (idle):     [0xB2, 0xFE, 0x0E]")
-    print("  25% (low):     [0x72, 0x0C, 0x7E]")
-    print("  50% (medium):  [0x8E, 0x82, 0x82]")
-    print("  75% (high):    [0xCE, 0x82, 0xC2]")
-    print("  100% (max):    [0xF2, 0x82, 0xFE]")
+    print("Acceleration parameter mapping (from actual logs):")
+    print("  0% (idle):     [0xC2, 0xFE, 0xB2, 0xFE, 0x0E]")
+    print("  25% (low):     [0xC2, 0xFE, 0xB2, 0xFE, 0x0E]")
+    print("  50% (medium):  [0x42, 0x8E, 0x82, 0xF2, 0x82]")
+    print("  75% (high):    [0x42, 0xCE, 0x82, 0xF2, 0xC2]")
+    print("  100% (max):    [0x42, 0xF2, 0x82, 0xF2, 0xFE]")
     print()
 
 def main():
@@ -305,4 +306,4 @@ def main():
         print("Invalid choice.")
 
 if __name__ == "__main__":
-    main() 
+    main()
