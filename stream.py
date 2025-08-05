@@ -100,6 +100,74 @@ def send_exact_line4_packet(port="/dev/ttyAMA0", baudrate=baudrate, duration=10,
     except Exception as e:
         print(f"Error sending exact line 4 packet: {e}")
 
+def send_corrected_20packets_packet(port="/dev/ttyAMA0", baudrate=baudrate, duration=10, frequency=20):
+    """
+    Send the corrected packet based on 20 packets/sec response
+    Original: 0xce 0x02 → Corrected: 0xce 0xb2
+    Original: 0xb2 0xfe 0xe → Corrected: 0xb2 0x4e 0xe
+    Packet: 0xbe 0xbe 0xfe 0xce 0xb2 0xfe 0xbc 0xbe 0xbe 0xcc 0xfe 0xb2 0xfe 0xbe 0xcc 0xfc 0xf2 0xbe 0xc2 0xfe 0xb2 0x4e 0xe 0x0
+    """
+    # Corrected packet based on 20 packets/sec system response
+    corrected_packet = bytes([
+        0xbe, 0xbe, 0xfe, 0xce, 0xb2, 0xfe, 0xbc, 0xbe, 0xbe, 0xcc, 0xfe, 0xb2, 0xfe, 
+        0xbe, 0xcc, 0xfc, 0xf2, 0xbe, 0xc2, 0xfe, 0xb2, 0x4e, 0x0e, 0x00
+    ])
+    
+    print(f"Starting corrected 20 packets/sec packet transmission...")
+    print(f"  - Packet: {' '.join(hex(b) for b in corrected_packet)}")
+    print(f"  - Length: {len(corrected_packet)} bytes")
+    print(f"  - Frequency: {frequency} packets/second")
+    print(f"  - Duration: {duration} seconds")
+    print(f"  - Total packets: {duration * frequency}")
+    print(f"  - Based on: System response to 20 packets/sec")
+    print()
+    
+    # Calculate interval between packets
+    interval = 1.0 / frequency
+    
+    try:
+        with serial.Serial(port, baudrate=baudrate, timeout=1) as ser:
+            start_time = time.time()
+            packet_count = 0
+            
+            print("Starting transmission...")
+            print("Press Ctrl+C to stop early")
+            print()
+            
+            try:
+                while time.time() - start_time < duration:
+                    # Send the corrected packet
+                    ser.write(corrected_packet)
+                    ser.flush()
+                    packet_count += 1
+                    
+                    # Show progress every 10 packets
+                    if packet_count % 10 == 0:
+                        elapsed = time.time() - start_time
+                        print(f"Sent {packet_count} packets in {elapsed:.1f}s")
+                    
+                    time.sleep(interval)
+                    
+            except KeyboardInterrupt:
+                print("\nStopped by user")
+            
+            elapsed = time.time() - start_time
+            print(f"\n✓ Corrected 20 packets/sec transmission complete!")
+            print(f"  - Packets sent: {packet_count}")
+            print(f"  - Duration: {elapsed:.1f} seconds")
+            print(f"  - Average rate: {packet_count/elapsed:.1f} packets/second")
+            
+            # Check for any final response
+            time.sleep(1)
+            if ser.in_waiting > 0:
+                response = ser.read(ser.in_waiting)
+                print(f"Final response: {[hex(b) for b in response]}")
+            else:
+                print("No final response received")
+                
+    except Exception as e:
+        print(f"Error sending corrected 20 packets/sec packet: {e}")
+
 def generate_acceleration_parameters(acceleration_level=0):
     """
     Generate acceleration parameters based on level (0-100)
@@ -323,12 +391,13 @@ def main():
     
     print("\nSelect operation:")
     print("1. Send exact line 4 packet (repeated)")
-    print("2. Send variable acceleration stream (realistic simulation)")
-    print("3. Send constant acceleration stream (fixed level)")
-    print("4. Show packet analysis")
-    print("5. Exit")
+    print("2. Send corrected 20 packets/sec packet (system-suggested)")
+    print("3. Send variable acceleration stream (realistic simulation)")
+    print("4. Send constant acceleration stream (fixed level)")
+    print("5. Show packet analysis")
+    print("6. Exit")
     
-    choice = input("Enter choice (1-5): ").strip()
+    choice = input("Enter choice (1-6): ").strip()
     
     if choice == "1":
         try:
@@ -350,13 +419,26 @@ def main():
             duration = 10.0
         
         try:
+            frequency = float(input("Enter frequency in packets/second (e.g., 20): ").strip())
+        except ValueError:
+            frequency = 20.0
+        
+        send_corrected_20packets_packet(duration=duration, frequency=frequency)
+        
+    elif choice == "3":
+        try:
+            duration = float(input("Enter duration in seconds (e.g., 10): ").strip())
+        except ValueError:
+            duration = 10.0
+        
+        try:
             frequency = float(input("Enter frequency in packets/second (e.g., 15): ").strip())
         except ValueError:
             frequency = 15.0
         
         send_packet_stream(duration=duration, frequency=frequency)
         
-    elif choice == "3":
+    elif choice == "4":
         try:
             accel_level = int(input("Enter acceleration level (0-100): ").strip())
             accel_level = max(0, min(100, accel_level))
@@ -375,10 +457,10 @@ def main():
         
         send_constant_acceleration_stream(acceleration_level=accel_level, duration=duration, frequency=frequency)
         
-    elif choice == "4":
+    elif choice == "5":
         show_packet_analysis()
         
-    elif choice == "5":
+    elif choice == "6":
         print("Exiting...")
         
     else:
