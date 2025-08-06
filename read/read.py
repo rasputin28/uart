@@ -1,6 +1,7 @@
 import serial
 import time
 import codecs
+from collections import deque
 
 # Default common UART baud rates
 baud_rates = [
@@ -34,6 +35,271 @@ STANDARD_PACKET_SIZE = 28
 PACKET_HEADER = [0x30, 0x36, 0x26]  # First 3 bytes of header
 PACKET_TERMINATOR = [0xCE, 0xFE]     # Last 2 bytes
 
+# Known packet patterns for better detection
+KNOWN_PACKET_PATTERNS = {
+    "28byte_standard": {
+        "header": [0x30, 0x36, 0x26],
+        "size": 28,
+        "terminator": [0xCE, 0xFE],
+        "description": "Standard 28-byte packet"
+    },
+    "28byte_alt_terminator": {
+        "header": [0x30, 0x36, 0x26],
+        "size": 28,
+        "terminator": [0xCE, 0xFF],
+        "description": "28-byte packet with error terminator"
+    },
+    "partial_28byte": {
+        "header": [0x30, 0x36, 0x26],
+        "min_size": 10,
+        "max_size": 27,
+        "description": "Partial 28-byte packet"
+    }
+}
+
+class PacketDetector:
+    """
+    Advanced packet detector that can handle multiple packet types,
+    partial packets, and provides detailed analysis.
+    """
+    
+    def __init__(self):
+        self.buffer = deque()  # Buffer for partial packets
+        self.packet_history = []  # Track packet patterns
+        self.stats = {
+            "total_bytes": 0,
+            "packets_found": 0,
+            "partial_packets": 0,
+            "single_bytes": 0,
+            "unknown_patterns": 0
+        }
+    
+    def add_data(self, data_bytes):
+        """Add new data to the buffer and process for packets."""
+        self.buffer.extend(data_bytes)
+        self.stats["total_bytes"] += len(data_bytes)
+        
+        packets = []
+        
+        # Process complete packets
+        while len(self.buffer) >= 3:  # Minimum header size
+            packet = self._extract_next_packet()
+            if packet:
+                packets.append(packet)
+            else:
+                break
+        
+        return packets
+    
+    def _extract_next_packet(self):
+        """Extract the next complete packet from the buffer."""
+        if len(self.buffer) < 3:
+            return None
+        
+        # Look for known packet patterns
+        for pattern_name, pattern in KNOWN_PACKET_PATTERNS.items():
+            packet = self._try_extract_pattern(pattern_name, pattern)
+            if packet:
+                return packet
+        
+        # Look for single-byte packets
+        single_byte = self._try_extract_single_byte()
+        if single_byte:
+            return single_byte
+        
+        # If no pattern matches, remove one byte and try again
+        self.buffer.popleft()
+        return None
+    
+    def _try_extract_pattern(self, pattern_name, pattern):
+        """Try to extract a packet matching the given pattern."""
+        if len(self.buffer) < len(pattern["header"]):
+            return None
+        
+        # Check header
+        for i, expected in enumerate(pattern["header"]):
+            if self.buffer[i] != expected:
+                return None
+        
+        # For complete packets, check size and terminator
+        if "size" in pattern:
+            if len(self.buffer) < pattern["size"]:
+                return None  # Not enough data yet
+            
+            packet_data = list(self.buffer)[:pattern["size"]]
+            
+            # Check terminator
+            if "terminator" in pattern:
+                terminator = pattern["terminator"]
+                if (packet_data[-len(terminator)] != terminator[0] or 
+                    packet_data[-len(terminator)+1] != terminator[1]):
+                    return None
+            
+            # Extract the packet
+            packet_bytes = bytes(packet_data)
+            for _ in range(pattern["size"]):
+                self.buffer.popleft()
+            
+            self.stats["packets_found"] += 1
+            return {
+                "type": pattern_name,
+                "data": packet_bytes,
+                "size": len(packet_bytes),
+                "description": pattern["description"],
+                "analysis": self._analyze_packet(packet_bytes, pattern_name)
+            }
+        
+        # For partial packets
+        elif "min_size" in pattern and "max_size" in pattern:
+            if len(self.buffer) >= pattern["min_size"]:
+                # Extract what we have
+                packet_data = list(self.buffer)[:pattern["max_size"]]
+                packet_bytes = bytes(packet_data)
+                
+                # Remove the data we processed
+                for _ in range(len(packet_data)):
+                    self.buffer.popleft()
+                
+                self.stats["partial_packets"] += 1
+                return {
+                    "type": pattern_name,
+                    "data": packet_bytes,
+                    "size": len(packet_bytes),
+                    "description": f"Partial {pattern['description']}",
+                    "analysis": self._analyze_partial_packet(packet_bytes)
+                }
+        
+        return None
+    
+    def _try_extract_single_byte(self):
+        """Try to extract a single-byte control packet."""
+        if not self.buffer:
+            return None
+        
+        byte = self.buffer[0]
+        
+        # Check if this could be a valid single-byte packet
+        if byte in [0x00, 0x02, 0xFE, 0xFF, 0xFC, 0x01]:
+            # Validate context
+            is_valid = self._validate_single_byte_context(byte)
+            if is_valid:
+                self.buffer.popleft()
+                self.stats["single_bytes"] += 1
+                return {
+                    "type": "single_byte",
+                    "data": bytes([byte]),
+                    "size": 1,
+                    "description": "Single-byte control packet",
+                    "analysis": self._analyze_single_byte(byte)
+                }
+        
+        return None
+    
+    def _validate_single_byte_context(self, byte):
+        """Validate if a single byte is likely a control packet."""
+        # Case 1: Isolated single byte
+        if len(self.buffer) > 1:
+            next_byte = self.buffer[1]
+            if next_byte not in [0x00, 0x02, 0xFE, 0xFF, 0xFC]:
+                return True
+        
+        # Case 2: At start of buffer
+        if len(self.buffer) == 1:
+            return True
+        
+        # Case 3: Part of control sequence
+        if len(self.buffer) > 1 and self.buffer[1] in [0xFE, 0xFF]:
+            return True
+        
+        return False
+    
+    def _analyze_packet(self, packet_data, pattern_name):
+        """Analyze a complete packet."""
+        if pattern_name == "28byte_standard" or pattern_name == "28byte_alt_terminator":
+            return self._analyze_28byte_packet(packet_data)
+        else:
+            return {"raw_data": list(packet_data)}
+    
+    def _analyze_28byte_packet(self, packet_data):
+        """Analyze a 28-byte packet according to PACKET.md."""
+        if len(packet_data) != 28:
+            return {"error": "Invalid packet size"}
+        
+        analysis = {
+            "header": list(packet_data[:25]),
+            "data_byte": packet_data[25],  # Position 26 (0-indexed)
+            "terminator": list(packet_data[26:28]),
+            "data_byte_hex": hex(packet_data[25]),
+            "data_byte_decimal": packet_data[25]
+        }
+        
+        # Analyze the data byte
+        if packet_data[25] == 0x30:
+            analysis["data_byte_meaning"] = "Normal state"
+        elif packet_data[25] == 0x32:
+            analysis["data_byte_meaning"] = "Alternate state"
+        elif packet_data[25] == 0xF0:
+            analysis["data_byte_meaning"] = "Occasional variation"
+        elif packet_data[25] == 0xFE:
+            analysis["data_byte_meaning"] = "Rare variation"
+        elif packet_data[25] == 0xFF:
+            analysis["data_byte_meaning"] = "Possible error indicator"
+        else:
+            analysis["data_byte_meaning"] = "Unknown"
+        
+        # Analyze terminator
+        if packet_data[26:28] == [0xCE, 0xFE]:
+            analysis["terminator_type"] = "Standard"
+        elif packet_data[26:28] == [0xCE, 0xFF]:
+            analysis["terminator_type"] = "Error condition"
+        else:
+            analysis["terminator_type"] = "Unknown"
+        
+        return analysis
+    
+    def _analyze_partial_packet(self, packet_data):
+        """Analyze a partial packet."""
+        return {
+            "partial_size": len(packet_data),
+            "has_header": len(packet_data) >= 3 and packet_data[:3] == [0x30, 0x36, 0x26],
+            "raw_data": list(packet_data)
+        }
+    
+    def _analyze_single_byte(self, byte_value):
+        """Analyze a single-byte packet."""
+        analysis = {
+            "value": hex(byte_value),
+            "decimal": byte_value,
+            "likely_purpose": "Unknown"
+        }
+        
+        # Based on PACKET.md analysis
+        if byte_value == 0x02:
+            analysis["likely_purpose"] = "Acknowledgment (ACK)"
+        elif byte_value == 0xFE:
+            analysis["likely_purpose"] = "Status update"
+        elif byte_value == 0xFF:
+            analysis["likely_purpose"] = "Error indicator"
+        elif byte_value == 0x00:
+            analysis["likely_purpose"] = "Null/empty"
+        elif byte_value == 0xFC:
+            analysis["likely_purpose"] = "Flow control"
+        elif byte_value == 0x01:
+            analysis["likely_purpose"] = "Control signal"
+        
+        return analysis
+    
+    def get_stats(self):
+        """Get current statistics."""
+        return self.stats.copy()
+    
+    def get_buffer_status(self):
+        """Get current buffer status."""
+        return {
+            "buffer_size": len(self.buffer),
+            "buffer_contents": list(self.buffer)
+        }
+
 def extract_28byte_packets(data_bytes):
     """
     Extract 28-byte packets based on the real protocol structure.
@@ -66,15 +332,76 @@ def extract_28byte_packets(data_bytes):
 
 def extract_single_byte_packets(data_bytes):
     """
-    Extract single-byte control packets (common in the protocol).
-    Returns list of single bytes that might be control signals.
+    Extract single-byte control packets based on protocol analysis.
+    Returns list of validated single-byte packets.
     """
     single_bytes = []
-    for i, byte in enumerate(data_bytes):
-        # Look for common control bytes
+    i = 0
+    
+    while i < len(data_bytes):
+        byte = data_bytes[i]
+        
+        # Check if this could be a single-byte control packet
+        # Based on PACKET.md analysis of common single-byte packets
         if byte in [0x00, 0x02, 0xFE, 0xFF, 0xFC]:
-            single_bytes.append((bytes([byte]), i, i+1))
+            
+            # Additional validation: check context
+            is_valid_single_byte = False
+            
+            # Case 1: Isolated single byte (surrounded by non-control bytes)
+            if i > 0 and i < len(data_bytes) - 1:
+                prev_byte = data_bytes[i-1]
+                next_byte = data_bytes[i+1]
+                
+                # If surrounded by non-control bytes, likely a control packet
+                if prev_byte not in [0x00, 0x02, 0xFE, 0xFF, 0xFC] and \
+                   next_byte not in [0x00, 0x02, 0xFE, 0xFF, 0xFC]:
+                    is_valid_single_byte = True
+            
+            # Case 2: At start of data stream
+            elif i == 0:
+                is_valid_single_byte = True
+            
+            # Case 3: At end of data stream  
+            elif i == len(data_bytes) - 1:
+                is_valid_single_byte = True
+            
+            # Case 4: Part of a sequence of control bytes (like 0xFE 0xFE)
+            elif i > 0 and data_bytes[i-1] in [0xFE, 0xFF]:
+                is_valid_single_byte = True
+            
+            if is_valid_single_byte:
+                single_bytes.append((bytes([byte]), i, i+1))
+        
+        i += 1
+    
     return single_bytes
+
+def analyze_single_byte_packet(byte_value):
+    """
+    Analyze a single-byte packet based on PACKET.md documentation.
+    """
+    analysis = {
+        "value": hex(byte_value),
+        "decimal": byte_value,
+        "likely_purpose": "Unknown"
+    }
+    
+    # Based on PACKET.md analysis
+    if byte_value == 0x02:
+        analysis["likely_purpose"] = "Acknowledgment (ACK)"
+    elif byte_value == 0xFE:
+        analysis["likely_purpose"] = "Status update"
+    elif byte_value == 0xFF:
+        analysis["likely_purpose"] = "Error indicator"
+    elif byte_value == 0x00:
+        analysis["likely_purpose"] = "Null/empty"
+    elif byte_value == 0xFC:
+        analysis["likely_purpose"] = "Flow control"
+    elif byte_value == 0x01:
+        analysis["likely_purpose"] = "Control signal"
+    
+    return analysis
 
 def analyze_packet_structure(packet_data):
     """
@@ -184,6 +511,10 @@ print(f"Selected formats: {', '.join(selected_formats)}")
 # Try the selected baud rate
 line_counter = 0
 print(f"\nTrying baud rate: {baud}")
+
+# Initialize the advanced packet detector
+detector = PacketDetector()
+
 try:
     with serial.Serial("/dev/ttyAMA0", baudrate=baud, timeout=1) as ser, open("log.txt", "a") as log:
         start = time.time()
@@ -192,58 +523,30 @@ try:
             if data:
                 line_counter += 1
                 
-                # Extract 28-byte packets based on real protocol
-                packets_28byte = extract_28byte_packets(data)
+                # Use the advanced packet detector
+                packets = detector.add_data(data)
                 
-                # Extract single-byte control packets
-                packets_single = extract_single_byte_packets(data)
-                
-                # Process each selected format
-                for format_type in selected_formats:
-                    decoded = decode_data(data, format_type)
-                    
-                    # Log and print decoded data
-                    log.write(f"[{line_counter:04d}] [{baud}] {format_type}: {decoded}\n")
-                    print(f"[{line_counter:04d}] [{baud}] {format_type}: {decoded}")
-                
-                # Process extracted 28-byte packets
-                if packets_28byte:
-                    print(f"[{line_counter:04d}] [{baud}] Found {len(packets_28byte)} 28-byte packet(s):")
-                    log.write(f"[{line_counter:04d}] [{baud}] Found {len(packets_28byte)} 28-byte packet(s):\n")
-                    
-                    for i, (packet_data, start_pos, end_pos) in enumerate(packets_28byte):
-                        print(f"[{line_counter:04d}] [{baud}] Packet {i+1} (pos {start_pos}-{end_pos}):")
-                        log.write(f"[{line_counter:04d}] [{baud}] Packet {i+1} (pos {start_pos}-{end_pos}):\n")
-                        
-                        # Analyze packet structure
-                        analysis = analyze_packet_structure(packet_data)
-                        print(f"[{line_counter:04d}] [{baud}]   Structure: {analysis}")
-                        log.write(f"[{line_counter:04d}] [{baud}]   Structure: {analysis}\n")
-                        
-                        # Show packet data in selected formats
-                        for format_type in selected_formats:
-                            packet_decoded = decode_data(packet_data, format_type)
-                            print(f"[{line_counter:04d}] [{baud}]   {format_type}: {packet_decoded}")
-                            log.write(f"[{line_counter:04d}] [{baud}]   {format_type}: {packet_decoded}\n")
-                        
-                        print()  # Empty line for readability
-                        log.write("\n")
-                
-                # Process single-byte packets
-                if packets_single:
-                    print(f"[{line_counter:04d}] [{baud}] Found {len(packets_single)} single-byte packet(s):")
-                    log.write(f"[{line_counter:04d}] [{baud}] Found {len(packets_single)} single-byte packet(s):\n")
-                    
-                    for i, (packet_data, start_pos, end_pos) in enumerate(packets_single):
-                        print(f"[{line_counter:04d}] [{baud}] Single-byte {i+1} (pos {start_pos}): {hex(packet_data[0])}")
-                        log.write(f"[{line_counter:04d}] [{baud}] Single-byte {i+1} (pos {start_pos}): {hex(packet_data[0])}\n")
-                
-                if not packets_28byte and not packets_single:
-                    print(f"[{line_counter:04d}] [{baud}] No standard packets found")
-                    log.write(f"[{line_counter:04d}] [{baud}] No standard packets found\n")
-                
-                print("-" * 80)  # Separator line
-                log.write("-" * 80 + "\n")
+                # Output hex only for raw data
+                hex_data = decode_data(data, "HEX_ONLY")
+                log.write(f"[{line_counter:04d}] [{baud}] HEX: {hex_data}\n")
+                print(f"[{line_counter:04d}] [{baud}] HEX: {hex_data}")
+        
+        # Show final statistics
+        stats = detector.get_stats()
+        print(f"\nFinal Statistics:")
+        print(f"  Total bytes processed: {stats['total_bytes']}")
+        print(f"  Complete packets found: {stats['packets_found']}")
+        print(f"  Partial packets found: {stats['partial_packets']}")
+        print(f"  Single-byte packets: {stats['single_bytes']}")
+        print(f"  Unknown patterns: {stats['unknown_patterns']}")
+        
+        log.write(f"\nFinal Statistics:\n")
+        log.write(f"  Total bytes processed: {stats['total_bytes']}\n")
+        log.write(f"  Complete packets found: {stats['packets_found']}\n")
+        log.write(f"  Partial packets found: {stats['partial_packets']}\n")
+        log.write(f"  Single-byte packets: {stats['single_bytes']}\n")
+        log.write(f"  Unknown patterns: {stats['unknown_patterns']}\n")
+        
 except Exception as e:
     print(f"[{baud}] Error: {e}")
 
