@@ -1,0 +1,908 @@
+rasputin@raspberrypi:~/uart/eave $ sudo python3 rcv_lcd_requests.py 
+Starting LCD variable-length packet receiver on /dev/ttyAMA0
+Baud rate: 16250
+Looking for packets between 0xBE and 0xFE markers
+============================================================
+Warning: End marker without start marker
+Warning: New start marker while already in packet
+
+[LCD Packet 1] Time: 0:00:00.829184
+Raw packet: 
+Length: 0 bytes
+Type: unknown
+Analysis: Invalid packet (too short)
+Hex: []
+Decimal: []
+----------------------------------------
+Warning: End marker without start marker
+
+[LCD Packet 2] Time: 0:00:00.000173
+Raw packet: 0xcc
+Length: 1 bytes
+Type: lcd_power
+Analysis: LCD Power command: ['0xcc']
+Hex: ['0xcc']
+Decimal: ['204']
+----------------------------------------
+Warning: End marker without start marker
+Warning: New start marker while already in packet
+
+[LCD Packet 3] Time: 0:00:00.000142
+Raw packet: 0xc2
+Length: 1 bytes
+Type: lcd_control
+Analysis: LCD Control command: ['0xc2']
+Hex: ['0xc2']
+Decimal: ['194']
+----------------------------------------
+Warning: End marker without start marker
+Warning: New start marker while already in packet
+
+[LCD Packet 4] Time: 0:00:00.125124
+Raw packet: 
+Length: 0 bytes
+Type: unknown
+Analysis: Invalid packet (too short)
+Hex: []
+Decimal: []
+----------------------------------------
+Warning: End marker without start marker
+
+[LCD Packet 5] Time: 0:00:00.000123
+Raw packet: 0xcc
+Length: 1 bytes
+Type: lcd_power
+Analysis: LCD Power command: ['0xcc']
+Hex: ['0xcc']
+Decimal: ['204']
+----------------------------------------
+Warning: End marker without start marker
+Warning: New start marker while already in packet
+
+[LCD Packet 6] Time: 0:00:00.000120
+Raw packet: 0xc2
+Length: 1 bytes
+Type: lcd_control
+Analysis: LCD Control command: ['0xc2']
+Hex: ['0xc2']
+Decimal: ['194']
+----------------------------------------
+Warning: End marker without start marker
+Warning: New start marker while already in packet
+
+[LCD Packet 7] Time: 0:00:00.125245
+Raw packet: 
+Length: 0 bytes
+Type: unknown
+Analysis: Invalid packet (too short)
+Hex: []
+Decimal: []
+----------------------------------------
+Warning: End marker without start marker
+
+[LCD Packet 8] Time: 0:00:00.000119
+Raw packet: 0xcc
+Length: 1 bytes
+Type: lcd_power
+Analysis: LCD Power command: ['0xcc']
+Hex: ['0xcc']
+Decimal: ['204']
+----------------------------------------
+Warning: End marker without start marker
+Warning: New start marker while already in packet
+
+[LCD Packet 9] Time: 0:00:00.000122
+Raw packet: 0xc2
+Length: 1 bytes
+Type: lcd_control
+Analysis: LCD Control command: ['0xc2']
+Hex: ['0xc2']
+Decimal: ['194']
+----------------------------------------
+Warning: End marker without start marker
+Warning: New start marker while already in packet
+
+[LCD Packet 10] Time: 0:00:00.124510
+Raw packet: 
+Length: 0 bytes
+Type: unknown
+Analysis: Invalid packet (too short)
+Hex: []
+Decimal: []
+----------------------------------------
+Warning: End marker without start marker
+
+[LCD Packet 11] Time: 0:00:00.000111
+Raw packet: 0xcc
+Length: 1 bytes
+Type: lcd_power
+Analysis: LCD Power command: ['0xcc']
+Hex: ['0xcc']
+Decimal: ['204']
+----------------------------------------
+Warning: End marker without start marker
+Warning: New start marker while already in packet
+
+[LCD Packet 12] Time: 0:00:00.000114
+Raw packet: 0x42
+Length: 1 bytes
+Type: lcd_status
+Analysis: LCD Status: ['0x42']
+Hex: ['0x42']
+Decimal: ['66']
+----------------------------------------
+Warning: End marker without start marker
+Warning: End marker without start marker
+Warning: New start marker while already in packet
+
+[LCD Packet 13] Time: 0:00:00.125246
+Raw packet: 
+Length: 0 bytes
+Type: unknown
+Analysis: Invalid packet (too short)
+Hex: []
+Decimal: []
+----------------------------------------
+Warning: End marker without start marker
+
+[LCD Packet 14] Time: 0:00:00.000111
+Raw packet: 0xcc
+Length: 1 bytes
+Type: lcd_power
+Analysis: LCD Power command: ['0xcc']
+Hex: ['0xcc']
+Decimal: ['204']
+----------------------------------------
+Warning: End marker without start marker
+Warning: New start marker while already in packet
+
+[LCD Packet 15] Time: 0:00:00.000114
+Raw packet: 0x42
+Length: 1 bytes
+Type: lcd_status
+Analysis: LCD Status: ['0x42']
+Hex: ['0x42']
+Decimal: ['66']
+----------------------------------------
+Warning: End marker without start marker
+Warning: New start marker while already in packet
+
+[LCD Packet 16] Time: 0:00:00.125347
+Raw packet: 
+Length: 0 bytes
+Type: unknown
+Analysis: Invalid packet (too short)
+Hex: []
+Decimal: []
+----------------------------------------
+Warning: End marker without start marker
+
+[LCD Packet 17] Time: 0:00:00.000109
+Raw packet: 0xcc
+Length: 1 bytes
+Type: lcd_power
+Analysis: LCD Power command: ['0xcc']
+Hex: ['0xcc']
+Decimal: ['204']
+----------------------------------------
+Warning: End marker without start marker
+Warning: New start marker while already in packet
+
+[LCD Packet 18] Time: 0:00:00.000110
+Raw packet: 0x42
+Length: 1 bytes
+Type: lcd_status
+Analysis: LCD Status: ['0x42']
+Hex: ['0x42']
+Decimal: ['66']
+----------------------------------------
+Warning: End marker without start marker
+Warning: End marker without start marker
+Warning: New start marker while already in packet
+
+[LCD Packet 19] Time: 0:00:00.125835
+Raw packet: 
+Length: 0 bytes
+Type: unknown
+Analysis: Invalid packet (too short)
+Hex: []
+Decimal: []
+----------------------------------------
+Warning: End marker without start marker
+
+[LCD Packet 20] Time: 0:00:00.000115
+Raw packet: 0xcc
+Length: 1 bytes
+Type: lcd_power
+Analysis: LCD Power command: ['0xcc']
+Hex: ['0xcc']
+Decimal: ['204']
+----------------------------------------
+Warning: End marker without start marker
+Warning: New start marker while already in packet
+
+[LCD Packet 21] Time: 0:00:00.000114
+Raw packet: 0xc2
+Length: 1 bytes
+Type: lcd_control
+Analysis: LCD Control command: ['0xc2']
+Hex: ['0xc2']
+Decimal: ['194']
+----------------------------------------
+Warning: End marker without start marker
+Warning: New start marker while already in packet
+
+[LCD Packet 22] Time: 0:00:00.125263
+Raw packet: 
+Length: 0 bytes
+Type: unknown
+Analysis: Invalid packet (too short)
+Hex: []
+Decimal: []
+----------------------------------------
+Warning: End marker without start marker
+
+[LCD Packet 23] Time: 0:00:00.000128
+Raw packet: 0xcc
+Length: 1 bytes
+Type: lcd_power
+Analysis: LCD Power command: ['0xcc']
+Hex: ['0xcc']
+Decimal: ['204']
+----------------------------------------
+Warning: End marker without start marker
+Warning: New start marker while already in packet
+
+[LCD Packet 24] Time: 0:00:00.000122
+Raw packet: 0xc2
+Length: 1 bytes
+Type: lcd_control
+Analysis: LCD Control command: ['0xc2']
+Hex: ['0xc2']
+Decimal: ['194']
+----------------------------------------
+Warning: End marker without start marker
+Warning: New start marker while already in packet
+
+[LCD Packet 25] Time: 0:00:00.125186
+Raw packet: 
+Length: 0 bytes
+Type: unknown
+Analysis: Invalid packet (too short)
+Hex: []
+Decimal: []
+----------------------------------------
+Warning: End marker without start marker
+
+[LCD Packet 26] Time: 0:00:00.000112
+Raw packet: 0xcc
+Length: 1 bytes
+Type: lcd_power
+Analysis: LCD Power command: ['0xcc']
+Hex: ['0xcc']
+Decimal: ['204']
+----------------------------------------
+Warning: End marker without start marker
+Warning: New start marker while already in packet
+
+[LCD Packet 27] Time: 0:00:00.000112
+Raw packet: 0xc2
+Length: 1 bytes
+Type: lcd_control
+Analysis: LCD Control command: ['0xc2']
+Hex: ['0xc2']
+Decimal: ['194']
+----------------------------------------
+Warning: End marker without start marker
+Warning: New start marker while already in packet
+
+[LCD Packet 28] Time: 0:00:00.125223
+Raw packet: 
+Length: 0 bytes
+Type: unknown
+Analysis: Invalid packet (too short)
+Hex: []
+Decimal: []
+----------------------------------------
+Warning: End marker without start marker
+
+[LCD Packet 29] Time: 0:00:00.000107
+Raw packet: 0xcc
+Length: 1 bytes
+Type: lcd_power
+Analysis: LCD Power command: ['0xcc']
+Hex: ['0xcc']
+Decimal: ['204']
+----------------------------------------
+Warning: End marker without start marker
+Warning: New start marker while already in packet
+
+[LCD Packet 30] Time: 0:00:00.000112
+Raw packet: 0xc2
+Length: 1 bytes
+Type: lcd_control
+Analysis: LCD Control command: ['0xc2']
+Hex: ['0xc2']
+Decimal: ['194']
+----------------------------------------
+Warning: End marker without start marker
+Warning: New start marker while already in packet
+
+[LCD Packet 31] Time: 0:00:00.125247
+Raw packet: 
+Length: 0 bytes
+Type: unknown
+Analysis: Invalid packet (too short)
+Hex: []
+Decimal: []
+----------------------------------------
+Warning: End marker without start marker
+
+[LCD Packet 32] Time: 0:00:00.000107
+Raw packet: 0xcc
+Length: 1 bytes
+Type: lcd_power
+Analysis: LCD Power command: ['0xcc']
+Hex: ['0xcc']
+Decimal: ['204']
+----------------------------------------
+Warning: End marker without start marker
+Warning: New start marker while already in packet
+
+[LCD Packet 33] Time: 0:00:00.000111
+Raw packet: 0xc2
+Length: 1 bytes
+Type: lcd_control
+Analysis: LCD Control command: ['0xc2']
+Hex: ['0xc2']
+Decimal: ['194']
+----------------------------------------
+Warning: End marker without start marker
+Warning: New start marker while already in packet
+
+[LCD Packet 34] Time: 0:00:00.125254
+Raw packet: 
+Length: 0 bytes
+Type: unknown
+Analysis: Invalid packet (too short)
+Hex: []
+Decimal: []
+----------------------------------------
+Warning: End marker without start marker
+
+[LCD Packet 35] Time: 0:00:00.000106
+Raw packet: 0xcc
+Length: 1 bytes
+Type: lcd_power
+Analysis: LCD Power command: ['0xcc']
+Hex: ['0xcc']
+Decimal: ['204']
+----------------------------------------
+Warning: End marker without start marker
+Warning: New start marker while already in packet
+
+[LCD Packet 36] Time: 0:00:00.000109
+Raw packet: 0xc2
+Length: 1 bytes
+Type: lcd_control
+Analysis: LCD Control command: ['0xc2']
+Hex: ['0xc2']
+Decimal: ['194']
+----------------------------------------
+Warning: End marker without start marker
+Warning: New start marker while already in packet
+
+[LCD Packet 37] Time: 0:00:00.124794
+Raw packet: 
+Length: 0 bytes
+Type: unknown
+Analysis: Invalid packet (too short)
+Hex: []
+Decimal: []
+----------------------------------------
+Warning: End marker without start marker
+
+[LCD Packet 38] Time: 0:00:00.000108
+Raw packet: 0xcc
+Length: 1 bytes
+Type: lcd_power
+Analysis: LCD Power command: ['0xcc']
+Hex: ['0xcc']
+Decimal: ['204']
+----------------------------------------
+Warning: End marker without start marker
+Warning: New start marker while already in packet
+
+[LCD Packet 39] Time: 0:00:00.000111
+Raw packet: 0x42
+Length: 1 bytes
+Type: lcd_status
+Analysis: LCD Status: ['0x42']
+Hex: ['0x42']
+Decimal: ['66']
+----------------------------------------
+Warning: End marker without start marker
+Warning: New start marker while already in packet
+
+[LCD Packet 40] Time: 0:00:00.126799
+Raw packet: 
+Length: 0 bytes
+Type: unknown
+Analysis: Invalid packet (too short)
+Hex: []
+Decimal: []
+----------------------------------------
+Warning: End marker without start marker
+Warning: End marker without start marker
+
+[LCD Packet 41] Time: 0:00:00.000177
+Raw packet: 0x42
+Length: 1 bytes
+Type: lcd_status
+Analysis: LCD Status: ['0x42']
+Hex: ['0x42']
+Decimal: ['66']
+----------------------------------------
+Warning: End marker without start marker
+
+[LCD Packet 42] Time: 0:00:00.123724
+Raw packet: 0x3e
+Length: 1 bytes
+Type: unknown
+Analysis: LCD Unknown command: ['0x3e']
+Hex: ['0x3e']
+Decimal: ['62']
+----------------------------------------
+
+[LCD Packet 43] Time: 0:00:00.000152
+Raw packet: 0xcc
+Length: 1 bytes
+Type: lcd_power
+Analysis: LCD Power command: ['0xcc']
+Hex: ['0xcc']
+Decimal: ['204']
+----------------------------------------
+Warning: End marker without start marker
+
+[LCD Packet 44] Time: 0:00:00.000109
+Raw packet: 0x42
+Length: 1 bytes
+Type: lcd_status
+Analysis: LCD Status: ['0x42']
+Hex: ['0x42']
+Decimal: ['66']
+----------------------------------------
+Warning: End marker without start marker
+Warning: New start marker while already in packet
+
+[LCD Packet 45] Time: 0:00:00.127108
+Raw packet: 
+Length: 0 bytes
+Type: unknown
+Analysis: Invalid packet (too short)
+Hex: []
+Decimal: []
+----------------------------------------
+
+[LCD Packet 46] Time: 0:00:00.000134
+Raw packet: 0xcc
+Length: 1 bytes
+Type: lcd_power
+Analysis: LCD Power command: ['0xcc']
+Hex: ['0xcc']
+Decimal: ['204']
+----------------------------------------
+
+[LCD Packet 47] Time: 0:00:00.000119
+Raw packet: 0x4c 0xfc 0xf2 0x82 0xc2
+Length: 5 bytes
+Type: unknown
+Analysis: LCD Unknown command: ['0x4c', '0xfc', '0xf2', '0x82', '0xc2']
+Hex: ['0x4c', '0xfc', '0xf2', '0x82', '0xc2']
+Decimal: ['76', '252', '242', '130', '194']
+Parameters: ['0xfc', '0xf2', '0x82', '0xc2']
+----------------------------------------
+Warning: End marker without start marker
+Warning: End marker without start marker
+Warning: New start marker while already in packet
+
+[LCD Packet 48] Time: 0:00:00.123354
+Raw packet: 0xf0 0xce 0x2
+Length: 3 bytes
+Type: unknown
+Analysis: LCD Unknown command: ['0xf0', '0xce', '0x2']
+Hex: ['0xf0', '0xce', '0x2']
+Decimal: ['240', '206', '2']
+Parameters: ['0xce', '0x2']
+----------------------------------------
+
+[LCD Packet 49] Time: 0:00:00.000158
+Raw packet: 0xcc
+Length: 1 bytes
+Type: lcd_power
+Analysis: LCD Power command: ['0xcc']
+Hex: ['0xcc']
+Decimal: ['204']
+----------------------------------------
+Warning: New start marker while already in packet
+
+[LCD Packet 50] Time: 0:00:00.000118
+Raw packet: 0x42
+Length: 1 bytes
+Type: lcd_status
+Analysis: LCD Status: ['0x42']
+Hex: ['0x42']
+Decimal: ['66']
+----------------------------------------
+Warning: End marker without start marker
+Warning: New start marker while already in packet
+
+[LCD Packet 51] Time: 0:00:00.125209
+Raw packet: 
+Length: 0 bytes
+Type: unknown
+Analysis: Invalid packet (too short)
+Hex: []
+Decimal: []
+----------------------------------------
+Warning: End marker without start marker
+Warning: New start marker while already in packet
+
+[LCD Packet 52] Time: 0:00:00.000201
+Raw packet: 0x42
+Length: 1 bytes
+Type: lcd_status
+Analysis: LCD Status: ['0x42']
+Hex: ['0x42']
+Decimal: ['66']
+----------------------------------------
+
+[LCD Packet 53] Time: 0:00:00.125187
+Raw packet: 
+Length: 0 bytes
+Type: unknown
+Analysis: Invalid packet (too short)
+Hex: []
+Decimal: []
+----------------------------------------
+Warning: End marker without start marker
+
+[LCD Packet 54] Time: 0:00:00.000133
+Raw packet: 0xcc
+Length: 1 bytes
+Type: lcd_power
+Analysis: LCD Power command: ['0xcc']
+Hex: ['0xcc']
+Decimal: ['204']
+----------------------------------------
+Warning: End marker without start marker
+
+[LCD Packet 55] Time: 0:00:00.000112
+Raw packet: 0xcc 0xfc 0xf2 0x1e 0x42
+Length: 5 bytes
+Type: lcd_power
+Analysis: LCD Power command: ['0xcc', '0xfc', '0xf2', '0x1e', '0x42']
+Hex: ['0xcc', '0xfc', '0xf2', '0x1e', '0x42']
+Decimal: ['204', '252', '242', '30', '66']
+Parameters: ['0xfc', '0xf2', '0x1e', '0x42']
+----------------------------------------
+Warning: End marker without start marker
+Warning: New start marker while already in packet
+
+[LCD Packet 56] Time: 0:00:00.125240
+Raw packet: 
+Length: 0 bytes
+Type: unknown
+Analysis: Invalid packet (too short)
+Hex: []
+Decimal: []
+----------------------------------------
+Warning: End marker without start marker
+
+[LCD Packet 57] Time: 0:00:00.000116
+Raw packet: 0x8c
+Length: 1 bytes
+Type: unknown
+Analysis: LCD Unknown command: ['0x8c']
+Hex: ['0x8c']
+Decimal: ['140']
+----------------------------------------
+Warning: End marker without start marker
+
+[LCD Packet 58] Time: 0:00:00.000133
+Raw packet: 0x42 0xde 0x7e 0x40
+Length: 4 bytes
+Type: lcd_status
+Analysis: LCD Status: ['0x42', '0xde', '0x7e', '0x40']
+Hex: ['0x42', '0xde', '0x7e', '0x40']
+Decimal: ['66', '222', '126', '64']
+Parameters: ['0xde', '0x7e', '0x40']
+----------------------------------------
+Warning: End marker without start marker
+Warning: New start marker while already in packet
+
+[LCD Packet 59] Time: 0:00:00.125263
+Raw packet: 0xee 0xce 0x2
+Length: 3 bytes
+Type: unknown
+Analysis: LCD Unknown command: ['0xee', '0xce', '0x2']
+Hex: ['0xee', '0xce', '0x2']
+Decimal: ['238', '206', '2']
+Parameters: ['0xce', '0x2']
+----------------------------------------
+
+[LCD Packet 60] Time: 0:00:00.000133
+Raw packet: 0x4
+Length: 1 bytes
+Type: unknown
+Analysis: LCD Unknown command: ['0x4']
+Hex: ['0x4']
+Decimal: ['4']
+----------------------------------------
+Warning: End marker without start marker
+Warning: New start marker while already in packet
+
+[LCD Packet 61] Time: 0:00:00.000115
+Raw packet: 0x42
+Length: 1 bytes
+Type: lcd_status
+Analysis: LCD Status: ['0x42']
+Hex: ['0x42']
+Decimal: ['66']
+----------------------------------------
+Warning: End marker without start marker
+
+[LCD Packet 62] Time: 0:00:00.125248
+Raw packet: 
+Length: 0 bytes
+Type: unknown
+Analysis: Invalid packet (too short)
+Hex: []
+Decimal: []
+----------------------------------------
+Warning: End marker without start marker
+
+[LCD Packet 63] Time: 0:00:00.000436
+Raw packet: 0xc
+Length: 1 bytes
+Type: unknown
+Analysis: LCD Unknown command: ['0xc']
+Hex: ['0xc']
+Decimal: ['12']
+----------------------------------------
+Warning: End marker without start marker
+Warning: New start marker while already in packet
+
+[LCD Packet 64] Time: 0:00:00.126302
+Raw packet: 0x42 0x7e 0x26 0x40 0xce 0x82 0x0 0x0 0x0 0x80 0x0 0x0 0x0 0x0 0x0 0x0 0x0 0x0 0x0 0x0 0x0 0x0
+Length: 22 bytes
+Type: lcd_status
+Analysis: LCD Status: ['0x42', '0x7e', '0x26', '0x40', '0xce', '0x82', '0x0', '0x0', '0x0', '0x80', '0x0', '0x0', '0x0', '0x0', '0x0', '0x0', '0x0', '0x0', '0x0', '0x0', '0x0', '0x0']
+Hex: ['0x42', '0x7e', '0x26', '0x40', '0xce', '0x82', '0x0', '0x0', '0x0', '0x80', '0x0', '0x0', '0x0', '0x0', '0x0', '0x0', '0x0', '0x0', '0x0', '0x0', '0x0', '0x0']
+Decimal: ['66', '126', '38', '64', '206', '130', '0', '0', '0', '128', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0']
+Parameters: ['0x7e', '0x26', '0x40', '0xce', '0x82', '0x0', '0x0', '0x0', '0x80', '0x0', '0x0', '0x0', '0x0', '0x0', '0x0', '0x0', '0x0', '0x0', '0x0', '0x0', '0x0']
+----------------------------------------
+Warning: End marker without start marker
+Warning: End marker without start marker
+Warning: End marker without start marker
+Warning: End marker without start marker
+
+[LCD Packet 65] Time: 0:00:00.000825
+Raw packet: 0xcc 0xfc 0xf2 0x8e 0x42
+Length: 5 bytes
+Type: lcd_power
+Analysis: LCD Power command: ['0xcc', '0xfc', '0xf2', '0x8e', '0x42']
+Hex: ['0xcc', '0xfc', '0xf2', '0x8e', '0x42']
+Decimal: ['204', '252', '242', '142', '66']
+Parameters: ['0xfc', '0xf2', '0x8e', '0x42']
+----------------------------------------
+Warning: End marker without start marker
+Warning: End marker without start marker
+Warning: New start marker while already in packet
+
+[LCD Packet 66] Time: 0:00:00.123443
+Raw packet: 0xf0 0xce 0x2
+Length: 3 bytes
+Type: unknown
+Analysis: LCD Unknown command: ['0xf0', '0xce', '0x2']
+Hex: ['0xf0', '0xce', '0x2']
+Decimal: ['240', '206', '2']
+Parameters: ['0xce', '0x2']
+----------------------------------------
+Warning: End marker without start marker
+Warning: End marker without start marker
+
+[LCD Packet 67] Time: 0:00:00.000341
+Raw packet: 0x42
+Length: 1 bytes
+Type: lcd_status
+Analysis: LCD Status: ['0x42']
+Hex: ['0x42']
+Decimal: ['66']
+----------------------------------------
+Warning: End marker without start marker
+Warning: New start marker while already in packet
+
+[LCD Packet 68] Time: 0:00:00.125035
+Raw packet: 0xb6
+Length: 1 bytes
+Type: unknown
+Analysis: LCD Unknown command: ['0xb6']
+Hex: ['0xb6']
+Decimal: ['182']
+----------------------------------------
+Warning: End marker without start marker
+
+[LCD Packet 69] Time: 0:00:00.000482
+Raw packet: 0x4c
+Length: 1 bytes
+Type: unknown
+Analysis: LCD Unknown command: ['0x4c']
+Hex: ['0x4c']
+Decimal: ['76']
+----------------------------------------
+Warning: End marker without start marker
+Warning: New start marker while already in packet
+
+[LCD Packet 70] Time: 0:00:00.000480
+Raw packet: 0x42
+Length: 1 bytes
+Type: lcd_status
+Analysis: LCD Status: ['0x42']
+Hex: ['0x42']
+Decimal: ['66']
+----------------------------------------
+Warning: End marker without start marker
+Warning: End marker without start marker
+Warning: New start marker while already in packet
+
+[LCD Packet 71] Time: 0:00:00.124550
+Raw packet: 
+Length: 0 bytes
+Type: unknown
+Analysis: Invalid packet (too short)
+Hex: []
+Decimal: []
+----------------------------------------
+
+[LCD Packet 72] Time: 0:00:00.000298
+Raw packet: 0xc8
+Length: 1 bytes
+Type: unknown
+Analysis: LCD Unknown command: ['0xc8']
+Hex: ['0xc8']
+Decimal: ['200']
+----------------------------------------
+Warning: End marker without start marker
+
+[LCD Packet 73] Time: 0:00:00.000131
+Raw packet: 0xcc 0xf4 0xf2 0x3a 0x42
+Length: 5 bytes
+Type: lcd_power
+Analysis: LCD Power command: ['0xcc', '0xf4', '0xf2', '0x3a', '0x42']
+Hex: ['0xcc', '0xf4', '0xf2', '0x3a', '0x42']
+Decimal: ['204', '244', '242', '58', '66']
+Parameters: ['0xf4', '0xf2', '0x3a', '0x42']
+----------------------------------------
+Warning: End marker without start marker
+Warning: New start marker while already in packet
+
+[LCD Packet 74] Time: 0:00:00.124988
+Raw packet: 
+Length: 0 bytes
+Type: unknown
+Analysis: Invalid packet (too short)
+Hex: []
+Decimal: []
+----------------------------------------
+Warning: End marker without start marker
+
+[LCD Packet 75] Time: 0:00:00.000492
+Raw packet: 0xcc
+Length: 1 bytes
+Type: lcd_power
+Analysis: LCD Power command: ['0xcc']
+Hex: ['0xcc']
+Decimal: ['204']
+----------------------------------------
+Warning: End marker without start marker
+
+[LCD Packet 76] Time: 0:00:00.000482
+Raw packet: 0xcc 0xfc 0xf2 0x1e 0xc2 0x34 0x7e 0x40
+Length: 8 bytes
+Type: lcd_power
+Analysis: LCD Power command: ['0xcc', '0xfc', '0xf2', '0x1e', '0xc2', '0x34', '0x7e', '0x40']
+Hex: ['0xcc', '0xfc', '0xf2', '0x1e', '0xc2', '0x34', '0x7e', '0x40']
+Decimal: ['204', '252', '242', '30', '194', '52', '126', '64']
+Parameters: ['0xfc', '0xf2', '0x1e', '0xc2', '0x34', '0x7e', '0x40']
+----------------------------------------
+Warning: End marker without start marker
+Warning: New start marker while already in packet
+
+[LCD Packet 77] Time: 0:00:00.124564
+Raw packet: 0xd0 0xce 0x2
+Length: 3 bytes
+Type: unknown
+Analysis: LCD Unknown command: ['0xd0', '0xce', '0x2']
+Hex: ['0xd0', '0xce', '0x2']
+Decimal: ['208', '206', '2']
+Parameters: ['0xce', '0x2']
+----------------------------------------
+Warning: End marker without start marker
+Warning: New start marker while already in packet
+
+[LCD Packet 78] Time: 0:00:00.000503
+Raw packet: 0x42
+Length: 1 bytes
+Type: lcd_status
+Analysis: LCD Status: ['0x42']
+Hex: ['0x42']
+Decimal: ['66']
+----------------------------------------
+Warning: End marker without start marker
+Warning: End marker without start marker
+Warning: New start marker while already in packet
+
+[LCD Packet 79] Time: 0:00:00.124985
+Raw packet: 0xde 0xce 0x2
+Length: 3 bytes
+Type: unknown
+Analysis: LCD Unknown command: ['0xde', '0xce', '0x2']
+Hex: ['0xde', '0xce', '0x2']
+Decimal: ['222', '206', '2']
+Parameters: ['0xce', '0x2']
+----------------------------------------
+
+[LCD Packet 80] Time: 0:00:00.000451
+Raw packet: 0xcc
+Length: 1 bytes
+Type: lcd_power
+Analysis: LCD Power command: ['0xcc']
+Hex: ['0xcc']
+Decimal: ['204']
+----------------------------------------
+Warning: End marker without start marker
+Warning: New start marker while already in packet
+
+[LCD Packet 81] Time: 0:00:00.000541
+Raw packet: 0x42
+Length: 1 bytes
+Type: lcd_status
+Analysis: LCD Status: ['0x42']
+Hex: ['0x42']
+Decimal: ['66']
+----------------------------------------
+Warning: End marker without start marker
+Warning: End marker without start marker
+
+[LCD Packet 82] Time: 0:00:00.126132
+Raw packet: 
+Length: 0 bytes
+Type: unknown
+Analysis: Invalid packet (too short)
+Hex: []
+Decimal: []
+----------------------------------------
+Warning: New start marker while already in packet
+
+[LCD Packet 83] Time: 0:00:00.000144
+Raw packet: 0xcc
+Length: 1 bytes
+Type: lcd_power
+Analysis: LCD Power command: ['0xcc']
+Hex: ['0xcc']
+Decimal: ['204']
+----------------------------------------
+Warning: End marker without start marker
+Warning: New start marker while already in packet
+
+[LCD Packet 84] Time: 0:00:00.000122
+Raw packet: 0x42
+Length: 1 bytes
+Type: lcd_status
+Analysis: LCD Status: ['0x42']
+Hex: ['0x42']
+Decimal: ['66']
+----------------------------------------
+Warning: End marker without start marker
+
