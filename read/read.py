@@ -518,7 +518,7 @@ detector = PacketDetector()
 try:
     with serial.Serial("/dev/ttyAMA0", baudrate=baud, timeout=1) as ser, open("log.txt", "a") as log:
         start = time.time()
-        while time.time() - start < 25:
+        while time.time() - start < 300:  # 5 minutes = 300 seconds
             data = ser.read(ser.in_waiting or 1)
             if data:
                 line_counter += 1
