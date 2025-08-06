@@ -430,7 +430,7 @@ def decode_data(data, format_type):
         elif format_type == "HEX":
             return [hex(b) for b in data]
         elif format_type == "HEX_ONLY":
-            return ' '.join(hex(b) for b in data)
+            return ' '.join(f'{b:02x}' for b in data)
         elif format_type == "ASCII":
             return ''.join(chr(b) if 32 <= b <= 126 else f'\\x{b:02x}' for b in data)
         elif format_type == "UTF8":

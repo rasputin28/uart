@@ -71,6 +71,55 @@ This is the **only dynamic byte** in the standard packet. It likely encodes sens
 
 ---
 
+## 🚗 Gear Position Encoding
+
+**IMPORTANT:** Analysis of gear shifting vs idle datasets reveals specific byte patterns that correlate with gear position.
+
+### Primary Gear Indicators
+
+#### 1. Terminator Pattern (Bytes 27-28) - **Most Reliable**
+
+| **Gear** | **Terminator Pattern** | **Description** |
+|----------|----------------------|-----------------|
+| **1**    | `0x8c`              | Incomplete terminator (missing 0xfe) |
+| **2**    | `0x4c 0xfe`         | Partial terminator |
+| **3**    | `0xce 0xfe`         | Complete standard terminator |
+
+**Key Observation:** The **terminator progression** `0x8c` → `0x4c 0xfe` → `0xce 0xfe` directly correlates with gear position.
+
+#### 2. Data Byte Changes (Byte 26) - **Direct Correlation**
+
+| **Gear** | **Data Byte Value** | **Hex Value** |
+|----------|-------------------|---------------|
+| **1**    | `0x8c`           | 140 (Gear 1 indicator) |
+| **2**    | `0x4c`           | 76 (Gear 2 indicator) |
+| **3**    | `0xce`           | 206 (Gear 3 indicator) |
+
+**Pattern:** The **third-to-last byte** changes from `0x8c` → `0x4c` → `0xce` as gears progress.
+
+#### 3. Header Variations (Byte 3) - **Less Consistent**
+
+| **Gear** | **Header Byte 3** | **Frequency** |
+|----------|------------------|---------------|
+| **1**    | `0x26`          | Standard header |
+| **2-3**  | `0x26`/`0x36`   | Modified header (occasional) |
+
+### Gear Position Encoding Summary
+
+| **Gear** | **Terminator** | **Data Byte (26)** | **Header Byte (3)** |
+|----------|----------------|-------------------|-------------------|
+| **1**    | `0x8c`        | `0x8c`           | `0x26`           |
+| **2**    | `0x4c 0xfe`   | `0x4c`           | `0x26`/`0x36`    |
+| **3**    | `0xce 0xfe`   | `0xce`           | `0x26`/`0x36`    |
+
+### Control Byte Frequency During Shifting
+
+- **High `0x02` frequency:** ~50 occurrences during gear shifts (acknowledgments)
+- **`0xFF` occurrences:** Error indicators during shift transitions
+- **Dynamic control pattern:** Varies with shifting activity vs static idle state
+
+---
+
 ## 📏 Packet Size Distribution
 
 | **Size (bytes)** | **Frequency** | **Purpose**               |
@@ -104,3 +153,5 @@ These appear between standard packets and may represent protocol commands or ack
 - Protocol includes **single-byte packets** for control and acknowledgment.
 - **Byte 26** carries variable payload data.
 - **Byte 28** acts as a terminator and may signal error conditions (`0xFF`).
+- **Gear position is encoded primarily in terminator bytes** with clear progression patterns.
+- **Data byte 26** shows direct correlation with gear position (`0x8c` → `0x4c` → `0xce`).
