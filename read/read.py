@@ -29,35 +29,67 @@ decoding_formats = {
     15: ("ALL", "All formats")
 }
 
-def extract_packets(data_bytes):
+# Protocol constants based on PACKET.md
+STANDARD_PACKET_SIZE = 28
+PACKET_HEADER = [0x30, 0x36, 0x26]  # First 3 bytes of header
+PACKET_TERMINATOR = [0xCE, 0xFE]     # Last 2 bytes
+
+def extract_28byte_packets(data_bytes):
     """
-    Extract packets between 0xBE and 0xFE markers.
+    Extract 28-byte packets based on the real protocol structure.
     Returns list of (packet_data, start_pos, end_pos) tuples.
     """
     packets = []
-    start_marker = 0xBE
-    end_marker = 0xFE
-    
     i = 0
-    while i < len(data_bytes):
-        # Find start marker
-        if data_bytes[i] == start_marker:
-            start_pos = i
-            # Find corresponding end marker
-            for j in range(i + 1, len(data_bytes)):
-                if data_bytes[j] == end_marker:
-                    # Extract payload (exclude the markers themselves)
-                    payload = data_bytes[start_pos + 1:j]
-                    packets.append((payload, start_pos, j))
-                    i = j + 1  # Continue from after the end marker
-                    break
+    
+    while i <= len(data_bytes) - STANDARD_PACKET_SIZE:
+        # Check if this position starts with the expected header
+        if (data_bytes[i] == PACKET_HEADER[0] and 
+            data_bytes[i+1] == PACKET_HEADER[1] and 
+            data_bytes[i+2] == PACKET_HEADER[2]):
+            
+            # Extract the potential 28-byte packet
+            packet_data = data_bytes[i:i+STANDARD_PACKET_SIZE]
+            
+            # Verify it ends with the expected terminator
+            if (packet_data[-2] == PACKET_TERMINATOR[0] and 
+                packet_data[-1] == PACKET_TERMINATOR[1]):
+                
+                packets.append((packet_data, i, i+STANDARD_PACKET_SIZE))
+                i += STANDARD_PACKET_SIZE  # Move to next potential packet
             else:
-                # No end marker found, skip this start marker
-                i += 1
+                i += 1  # Try next position
         else:
             i += 1
     
     return packets
+
+def extract_single_byte_packets(data_bytes):
+    """
+    Extract single-byte control packets (common in the protocol).
+    Returns list of single bytes that might be control signals.
+    """
+    single_bytes = []
+    for i, byte in enumerate(data_bytes):
+        # Look for common control bytes
+        if byte in [0x00, 0x02, 0xFE, 0xFF, 0xFC]:
+            single_bytes.append((bytes([byte]), i, i+1))
+    return single_bytes
+
+def analyze_packet_structure(packet_data):
+    """
+    Analyze the structure of a 28-byte packet according to PACKET.md.
+    """
+    if len(packet_data) != STANDARD_PACKET_SIZE:
+        return "Invalid packet size"
+    
+    analysis = {
+        "header": packet_data[:25],
+        "data_byte": packet_data[25],  # Position 26 (0-indexed)
+        "terminator": packet_data[26:28]
+    }
+    
+    return analysis
 
 def decode_data(data, format_type):
     """
@@ -160,8 +192,11 @@ try:
             if data:
                 line_counter += 1
                 
-                # Extract packets between 0xBE and 0xFE markers
-                packets = extract_packets(data)
+                # Extract 28-byte packets based on real protocol
+                packets_28byte = extract_28byte_packets(data)
+                
+                # Extract single-byte control packets
+                packets_single = extract_single_byte_packets(data)
                 
                 # Process each selected format
                 for format_type in selected_formats:
@@ -171,14 +206,19 @@ try:
                     log.write(f"[{line_counter:04d}] [{baud}] {format_type}: {decoded}\n")
                     print(f"[{line_counter:04d}] [{baud}] {format_type}: {decoded}")
                 
-                # Process extracted packets
-                if packets:
-                    print(f"[{line_counter:04d}] [{baud}] Found {len(packets)} packet(s):")
-                    log.write(f"[{line_counter:04d}] [{baud}] Found {len(packets)} packet(s):\n")
+                # Process extracted 28-byte packets
+                if packets_28byte:
+                    print(f"[{line_counter:04d}] [{baud}] Found {len(packets_28byte)} 28-byte packet(s):")
+                    log.write(f"[{line_counter:04d}] [{baud}] Found {len(packets_28byte)} 28-byte packet(s):\n")
                     
-                    for i, (packet_data, start_pos, end_pos) in enumerate(packets):
+                    for i, (packet_data, start_pos, end_pos) in enumerate(packets_28byte):
                         print(f"[{line_counter:04d}] [{baud}] Packet {i+1} (pos {start_pos}-{end_pos}):")
                         log.write(f"[{line_counter:04d}] [{baud}] Packet {i+1} (pos {start_pos}-{end_pos}):\n")
+                        
+                        # Analyze packet structure
+                        analysis = analyze_packet_structure(packet_data)
+                        print(f"[{line_counter:04d}] [{baud}]   Structure: {analysis}")
+                        log.write(f"[{line_counter:04d}] [{baud}]   Structure: {analysis}\n")
                         
                         # Show packet data in selected formats
                         for format_type in selected_formats:
@@ -188,9 +228,19 @@ try:
                         
                         print()  # Empty line for readability
                         log.write("\n")
-                else:
-                    print(f"[{line_counter:04d}] [{baud}] No complete packets found (0xBE...0xFE)")
-                    log.write(f"[{line_counter:04d}] [{baud}] No complete packets found (0xBE...0xFE)\n")
+                
+                # Process single-byte packets
+                if packets_single:
+                    print(f"[{line_counter:04d}] [{baud}] Found {len(packets_single)} single-byte packet(s):")
+                    log.write(f"[{line_counter:04d}] [{baud}] Found {len(packets_single)} single-byte packet(s):\n")
+                    
+                    for i, (packet_data, start_pos, end_pos) in enumerate(packets_single):
+                        print(f"[{line_counter:04d}] [{baud}] Single-byte {i+1} (pos {start_pos}): {hex(packet_data[0])}")
+                        log.write(f"[{line_counter:04d}] [{baud}] Single-byte {i+1} (pos {start_pos}): {hex(packet_data[0])}\n")
+                
+                if not packets_28byte and not packets_single:
+                    print(f"[{line_counter:04d}] [{baud}] No standard packets found")
+                    log.write(f"[{line_counter:04d}] [{baud}] No standard packets found\n")
                 
                 print("-" * 80)  # Separator line
                 log.write("-" * 80 + "\n")
