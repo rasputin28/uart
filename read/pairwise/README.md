@@ -1,4 +1,4 @@
-Test Distance Unit	Diameter inches	Cruise	# Imanes	Bateria Volts	Gear	Status
+Test Distance Unit	Diameter inches	Cruise	# Imanes o % velocidad	Bateria Volts	Gear	Status
 1	Mi	8	No	30	48	2	Accelerating
 2	Mi	8	No	30	48	1	Accelerating
 3	Mi	10	Si	15	36	2	Idle
@@ -23,3 +23,5 @@ Here are some preliminary assumptions (may be wrong):
 Each packet starts with a 02
 
 .....
+
+On test number 8, speed oscillated mcuh between 56 and 57 km/h due to instability.
