@@ -526,10 +526,11 @@ try:
                 # Use the advanced packet detector
                 packets = detector.add_data(data)
                 
-                # Output hex only for raw data
-                hex_data = decode_data(data, "HEX_ONLY")
-                log.write(f"[{line_counter:04d}] [{baud}] HEX: {hex_data}\n")
-                print(f"[{line_counter:04d}] [{baud}] HEX: {hex_data}")
+                # Output all selected formats
+                for format_name in selected_formats:
+                    decoded_data = decode_data(data, format_name)
+                    log.write(f"[{line_counter:04d}] [{baud}] {format_name}: {decoded_data}\n")
+                    print(f"[{line_counter:04d}] [{baud}] {format_name}: {decoded_data}")
         
         # Show final statistics
         stats = detector.get_stats()
