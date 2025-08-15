@@ -1,0 +1,1 @@
+Aqui se analiza el patin importado por Ecoolpa de Jorky
